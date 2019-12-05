@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.blog.dao.RysqDao">
+
+	<select id="get" resultType="com.bootdo.blog.domain.RysqDO">
+		select `cid`,`title`,`frdb`,`frlxfs`,`xmlxr`,`xmlxrlxfs`,`dzyx`,`wz`,`xmmc`,`xmztz`,`zcdz`,`zyjsnr1`,`zyjsnr2`,`zyjsnr3`,`rzfs_zl`,`rzfs_xz`,`xy_yjncz`,`xy_nxssr`,`xy_nlr`,`xy_nss`,`sh` from blog_rysq where cid = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.blog.domain.RysqDO">
+		select `cid`,`title`,`frdb`,`frlxfs`,`xmlxr`,`xmlxrlxfs`,`dzyx`,`wz`,`xmmc`,`xmztz`,`zcdz`,`zyjsnr1`,`zyjsnr2`,`zyjsnr3`,`rzfs_zl`,`rzfs_xz`,`xy_yjncz`,`xy_nxssr`,`xy_nlr`,`xy_nss`,`sh` from blog_rysq
+        <where>  
+		  		  <if test="cid != null and cid != ''"> and cid = #{cid} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="frdb != null and frdb != ''"> and frdb = #{frdb} </if>
+		  		  <if test="frlxfs != null and frlxfs != ''"> and frlxfs = #{frlxfs} </if>
+		  		  <if test="xmlxr != null and xmlxr != ''"> and xmlxr = #{xmlxr} </if>
+		  		  <if test="xmlxrlxfs != null and xmlxrlxfs != ''"> and xmlxrlxfs = #{xmlxrlxfs} </if>
+		  		  <if test="dzyx != null and dzyx != ''"> and dzyx = #{dzyx} </if>
+		  		  <if test="wz != null and wz != ''"> and wz = #{wz} </if>
+		  		  <if test="xmmc != null and xmmc != ''"> and xmmc = #{xmmc} </if>
+		  		  <if test="xmztz != null and xmztz != ''"> and xmztz = #{xmztz} </if>
+		  		  <if test="zcdz != null and zcdz != ''"> and zcdz = #{zcdz} </if>
+		  		  <if test="zyjsnr1 != null and zyjsnr1 != ''"> and zyjsnr1 = #{zyjsnr1} </if>
+		  		  <if test="zyjsnr2 != null and zyjsnr2 != ''"> and zyjsnr2 = #{zyjsnr2} </if>
+		  		  <if test="zyjsnr3 != null and zyjsnr3 != ''"> and zyjsnr3 = #{zyjsnr3} </if>
+		  		  <if test="rzfsZl != null and rzfsZl != ''"> and rzfs_zl = #{rzfsZl} </if>
+		  		  <if test="rzfsXz != null and rzfsXz != ''"> and rzfs_xz = #{rzfsXz} </if>
+		  		  <if test="xyYjncz != null and xyYjncz != ''"> and xy_yjncz = #{xyYjncz} </if>
+		  		  <if test="xyNxssr != null and xyNxssr != ''"> and xy_nxssr = #{xyNxssr} </if>
+		  		  <if test="xyNlr != null and xyNlr != ''"> and xy_nlr = #{xyNlr} </if>
+		  		  <if test="xyNss != null and xyNss != ''"> and xy_nss = #{xyNss} </if>
+		  		  <if test="sh != null and sh != ''"> and sh = #{sh} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by cid desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from blog_rysq
+		 <where>  
+		  		  <if test="cid != null and cid != ''"> and cid = #{cid} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="frdb != null and frdb != ''"> and frdb = #{frdb} </if>
+		  		  <if test="frlxfs != null and frlxfs != ''"> and frlxfs = #{frlxfs} </if>
+		  		  <if test="xmlxr != null and xmlxr != ''"> and xmlxr = #{xmlxr} </if>
+		  		  <if test="xmlxrlxfs != null and xmlxrlxfs != ''"> and xmlxrlxfs = #{xmlxrlxfs} </if>
+		  		  <if test="dzyx != null and dzyx != ''"> and dzyx = #{dzyx} </if>
+		  		  <if test="wz != null and wz != ''"> and wz = #{wz} </if>
+		  		  <if test="xmmc != null and xmmc != ''"> and xmmc = #{xmmc} </if>
+		  		  <if test="xmztz != null and xmztz != ''"> and xmztz = #{xmztz} </if>
+		  		  <if test="zcdz != null and zcdz != ''"> and zcdz = #{zcdz} </if>
+		  		  <if test="zyjsnr1 != null and zyjsnr1 != ''"> and zyjsnr1 = #{zyjsnr1} </if>
+		  		  <if test="zyjsnr2 != null and zyjsnr2 != ''"> and zyjsnr2 = #{zyjsnr2} </if>
+		  		  <if test="zyjsnr3 != null and zyjsnr3 != ''"> and zyjsnr3 = #{zyjsnr3} </if>
+		  		  <if test="rzfsZl != null and rzfsZl != ''"> and rzfs_zl = #{rzfsZl} </if>
+		  		  <if test="rzfsXz != null and rzfsXz != ''"> and rzfs_xz = #{rzfsXz} </if>
+		  		  <if test="xyYjncz != null and xyYjncz != ''"> and xy_yjncz = #{xyYjncz} </if>
+		  		  <if test="xyNxssr != null and xyNxssr != ''"> and xy_nxssr = #{xyNxssr} </if>
+		  		  <if test="xyNlr != null and xyNlr != ''"> and xy_nlr = #{xyNlr} </if>
+		  		  <if test="xyNss != null and xyNss != ''"> and xy_nss = #{xyNss} </if>
+		  		  <if test="sh != null and sh != ''"> and sh = #{sh} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.blog.domain.RysqDO" useGeneratedKeys="true" keyProperty="cid">
+		insert into blog_rysq
+		(
+			`title`, 
+			`frdb`, 
+			`frlxfs`, 
+			`xmlxr`, 
+			`xmlxrlxfs`, 
+			`dzyx`, 
+			`wz`, 
+			`xmmc`, 
+			`xmztz`, 
+			`zcdz`, 
+			`zyjsnr1`, 
+			`zyjsnr2`, 
+			`zyjsnr3`, 
+			`rzfs_zl`, 
+			`rzfs_xz`, 
+			`xy_yjncz`, 
+			`xy_nxssr`, 
+			`xy_nlr`, 
+			`xy_nss`, 
+			`sh`
+		)
+		values
+		(
+			#{title}, 
+			#{frdb}, 
+			#{frlxfs}, 
+			#{xmlxr}, 
+			#{xmlxrlxfs}, 
+			#{dzyx}, 
+			#{wz}, 
+			#{xmmc}, 
+			#{xmztz}, 
+			#{zcdz}, 
+			#{zyjsnr1}, 
+			#{zyjsnr2}, 
+			#{zyjsnr3}, 
+			#{rzfsZl}, 
+			#{rzfsXz}, 
+			#{xyYjncz}, 
+			#{xyNxssr}, 
+			#{xyNlr}, 
+			#{xyNss}, 
+			#{sh}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.blog.domain.RysqDO">
+		update blog_rysq 
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="frdb != null">`frdb` = #{frdb}, </if>
+			<if test="frlxfs != null">`frlxfs` = #{frlxfs}, </if>
+			<if test="xmlxr != null">`xmlxr` = #{xmlxr}, </if>
+			<if test="xmlxrlxfs != null">`xmlxrlxfs` = #{xmlxrlxfs}, </if>
+			<if test="dzyx != null">`dzyx` = #{dzyx}, </if>
+			<if test="wz != null">`wz` = #{wz}, </if>
+			<if test="xmmc != null">`xmmc` = #{xmmc}, </if>
+			<if test="xmztz != null">`xmztz` = #{xmztz}, </if>
+			<if test="zcdz != null">`zcdz` = #{zcdz}, </if>
+			<if test="zyjsnr1 != null">`zyjsnr1` = #{zyjsnr1}, </if>
+			<if test="zyjsnr2 != null">`zyjsnr2` = #{zyjsnr2}, </if>
+			<if test="zyjsnr3 != null">`zyjsnr3` = #{zyjsnr3}, </if>
+			<if test="rzfsZl != null">`rzfs_zl` = #{rzfsZl}, </if>
+			<if test="rzfsXz != null">`rzfs_xz` = #{rzfsXz}, </if>
+			<if test="xyYjncz != null">`xy_yjncz` = #{xyYjncz}, </if>
+			<if test="xyNxssr != null">`xy_nxssr` = #{xyNxssr}, </if>
+			<if test="xyNlr != null">`xy_nlr` = #{xyNlr}, </if>
+			<if test="xyNss != null">`xy_nss` = #{xyNss}, </if>
+			<if test="sh != null">`sh` = #{sh}</if>
+		</set>
+		where cid = #{cid}
+	</update>
+	
+	<delete id="remove">
+		delete from blog_rysq where cid = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from blog_rysq where cid in 
+		<foreach item="cid" collection="array" open="(" separator="," close=")">
+			#{cid}
+		</foreach>
+	</delete>
+	<update id="batchShenhe">
+		UPDATE blog_rysq
+		<set>
+			`sh` = 1
+		</set>
+		where cid in
+		<foreach item="cid" collection="array" open="(" separator="," close=")">
+			#{cid}
+		</foreach>
+	</update>
+	<update id="batchQuxiaoshenhe">
+		UPDATE blog_rysq
+		<set>
+			`sh` = 0
+		</set>
+		where cid in
+		<foreach item="cid" collection="array" open="(" separator="," close=")">
+			#{cid}
+		</foreach>
+	</update>
+</mapper>

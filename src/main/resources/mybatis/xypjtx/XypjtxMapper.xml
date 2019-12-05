@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.xypjtx.dao.XypjtxDao">
+    <select id="listMenu" resultType="com.bootdo.xypjtx.domain.MenuDO">
+        select distinct
+        m.menu_id , parent_id, name, url,
+        perms,`type`,icon,order_num,gmt_create, gmt_modified
+        from xypjtx_menu m
+        WHERE
+        m.type in(0,1)
+        order by
+        m.order_num
+    </select>
+    <select id="count" resultType="int">
+        select count(*) from xypjtx_menu
+        <where>
+            <if test="cid != null and cid != ''"> and cid = #{cid} </if>
+            <if test="title != null and title != ''"> and title = #{title} </if>
+            <if test="subtitle != null and subtitle != ''"> and subtitle = #{subtitle} </if>
+            <if test="created != null and created != ''"> and created = #{created} </if>
+            <if test="modified != null and modified != ''"> and modified = #{modified} </if>
+            <if test="content != null and content != ''"> and content = #{content} </if>
+            <if test="status != null and status != ''"> and status = #{status} </if>
+            <if test="author != null and author != ''"> and author = #{author} </if>
+            <if test="gtmCreate != null and gtmCreate != ''"> and gtm_create = #{gtmCreate} </if>
+            <if test="gtmModified != null and gtmModified != ''"> and gtm_modified = #{gtmModified} </if>
+            <if test="zhiding != null and zhiding != ''"> and zhiding = #{zhiding} </if>
+            <if test="fujian != null and fujian != ''"> and fujian = #{fujian} </if>
+        </where>
+    </select>
+    <select id="getAll" resultType="com.bootdo.xypjtx.domain.XyggDO">
+        select `cid`,`title`,`subtitle`,`created`,`modified`,`content`,`status`,`author`,`gtm_create`,`gtm_modified`,`zhiding`,`fujian` from xypjtx_xygg
+        <where>
+            status = 1
+            <if test="cid != null and cid != ''"> and cid = #{cid} </if>
+            <if test="title != null and title != ''"> and title = #{title} </if>
+            <!--<if test="title != null and title != ''"> and title LIKE '%${title}%' </if>-->
+            <if test="subtitle != null and subtitle != ''"> and subtitle = #{subtitle} </if>
+            <if test="created != null and created != ''"> and created = #{created} </if>
+            <if test="modified != null and modified != ''"> and modified = #{modified} </if>
+            <if test="content != null and content != ''"> and content = #{content} </if>
+            <if test="fenlei != null and fenlei != ''"> and fenlei = #{fenlei} </if>
+            <!--<if test="status != null and status != ''"> and status = #{status} </if>-->
+            <if test="author != null and author != ''"> and author = #{author} </if>
+            <if test="gtmCreate != null and gtmCreate != ''"> and gtm_create = #{gtmCreate} </if>
+            <if test="gtmModified != null and gtmModified != ''"> and gtm_modified = #{gtmModified} </if>
+            <if test="mokuai != null and mokuai != ''"> and mokuai = #{mokuai} </if>
+            <if test="shouyetupian != null and shouyetupian != ''"> and shouyetupian = #{shouyetupian} </if>
+            <if test="zhiding != null and zhiding != ''"> and zhiding = #{zhiding} </if>
+            <if test="fujian != null and fujian != ''"> and fujian = #{fujian} </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , ${sort} ${order}
+            </when>
+            <otherwise>
+                order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , gtm_create desc
+            </otherwise>
+        </choose>
+    </select>
+    <select id="getMenuPerms" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT
+        sm.perms
+        FROM sys_user su
+        INNER JOIN sys_user_role sur ON su.user_id = sur.user_id
+        INNER JOIN sys_role sr ON sr.role_id = sur.role_id
+        INNER JOIN sys_role_menu srm ON srm.role_id = sr.role_id
+        INNER JOIN sys_menu sm ON sm.menu_id = srm.menu_id
+        <where> su.user_id = #{userId}</where>
+    </select>
+    <select id="get" resultType="com.bootdo.xypjtx.domain.XyggDO">
+        select `cid`,`title`,`subtitle`,`created`,`modified`,`content`,`status`,`author`,`gtm_create`,`gtm_modified`,`zhiding`,`fujian` from xypjtx_xygg where cid = #{value}
+    </select>
+    <select id="getDeptId" resultType="java.lang.Long">
+        SELECT dept_id FROM sys_user LIMIT 0,1
+    </select>
+    <insert id="userSave" parameterType="com.bootdo.system.domain.UserDO">
+        insert into sys_user
+		(
+			`username`,
+			`name`,
+			`password`,
+			`dept_id`,
+			`email`,
+			`mobile`,
+			`status`,
+			`user_id_create`,
+			`gmt_create`,
+			`gmt_modified`,
+			`sex`,
+			`birth`,
+			`pic_id`,
+			`live_address`,
+			`hobby`,
+			`province`,
+			`city`,
+			`district`
+		)
+		values
+		(
+			#{username},
+			#{name},
+			#{password},
+			#{deptId},
+			#{email},
+			#{mobile},
+			#{status},
+			#{userIdCreate},
+			#{gmtCreate},
+			#{gmtModified},
+			#{sex},
+			#{birth},
+			#{picId},
+			#{liveAddress},
+			#{hobby},
+			#{province},
+			#{city},
+			#{district}
+		)
+    </insert>
+</mapper>

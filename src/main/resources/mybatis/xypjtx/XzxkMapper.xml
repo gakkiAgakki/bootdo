@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.xypjtx.dao.XzxkDao">
+
+	<select id="get" resultType="com.bootdo.xypjtx.domain.XzxkDO">
+		select `xId`,`ztmc`,`tyshxydm`,`gsdjzh`,`fddbrxm`,`xmmc`,`xzxkjdswh`,`splb`,`xknr`,`xksxq`,`xkjzq`,`xkjg`,`dqzt`,`dfbm`,`xxtgbm`,`sjbssj`,`xycns`,`dz`,`shouxcs`,`shixcs`,`xzcfcs`,`sh`,`tjz`,`beiyong1`,`beiyong2` from xypjtx_xzxk where xId = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.xypjtx.domain.XzxkDO">
+		select `xId`,`ztmc`,`tyshxydm`,`gsdjzh`,`fddbrxm`,`xmmc`,`xzxkjdswh`,`splb`,`xknr`,`xksxq`,`xkjzq`,`xkjg`,`dqzt`,`dfbm`,`xxtgbm`,`sjbssj`,`xycns`,`dz`,`shouxcs`,`shixcs`,`xzcfcs`,`sh`,`tjz`,`beiyong1`,`beiyong2` from xypjtx_xzxk
+        <where>  
+		  		  <if test="xid != null and xid != ''"> and xId = #{xid} </if>
+		  		  <if test="ztmc != null and ztmc != ''"> and ztmc = #{ztmc} </if>
+		  		  <if test="tyshxydm != null and tyshxydm != ''"> and tyshxydm = #{tyshxydm} </if>
+		  		  <if test="gsdjzh != null and gsdjzh != ''"> and gsdjzh = #{gsdjzh} </if>
+		  		  <if test="fddbrxm != null and fddbrxm != ''"> and fddbrxm = #{fddbrxm} </if>
+		  		  <if test="xmmc != null and xmmc != ''"> and xmmc = #{xmmc} </if>
+		  		  <if test="xzxkjdswh != null and xzxkjdswh != ''"> and xzxkjdswh = #{xzxkjdswh} </if>
+		  		  <if test="splb != null and splb != ''"> and splb = #{splb} </if>
+		  		  <if test="xknr != null and xknr != ''"> and xknr = #{xknr} </if>
+		  		  <if test="xksxq != null and xksxq != ''"> and xksxq = #{xksxq} </if>
+		  		  <if test="xkjzq != null and xkjzq != ''"> and xkjzq = #{xkjzq} </if>
+		  		  <if test="xkjg != null and xkjg != ''"> and xkjg = #{xkjg} </if>
+		  		  <if test="dqzt != null and dqzt != ''"> and dqzt = #{dqzt} </if>
+		  		  <if test="dfbm != null and dfbm != ''"> and dfbm = #{dfbm} </if>
+		  		  <if test="xxtgbm != null and xxtgbm != ''"> and xxtgbm = #{xxtgbm} </if>
+		  		  <if test="sjbssj != null and sjbssj != ''"> and sjbssj = #{sjbssj} </if>
+		  		  <if test="xycns != null and xycns != ''"> and xycns = #{xycns} </if>
+		  		  <if test="dz != null and dz != ''"> and dz = #{dz} </if>
+		  		  <if test="shouxcs != null and shouxcs != ''"> and shouxcs = #{shouxcs} </if>
+		  		  <if test="shixcs != null and shixcs != ''"> and shixcs = #{shixcs} </if>
+		  		  <if test="xzcfcs != null and xzcfcs != ''"> and xzcfcs = #{xzcfcs} </if>
+		  		  <if test="sh != null and sh != ''"> and sh = #{sh} </if>
+		  		  <if test="tjz != null and tjz != ''"> and tjz = #{tjz} </if>
+		  		  <if test="beiyong1 != null and beiyong1 != ''"> and beiyong1 = #{beiyong1} </if>
+		  		  <if test="beiyong2 != null and beiyong2 != ''"> and beiyong2 = #{beiyong2} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by xId desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from xypjtx_xzxk
+		 <where>  
+		  		  <if test="xid != null and xid != ''"> and xId = #{xid} </if>
+		  		  <if test="ztmc != null and ztmc != ''"> and ztmc = #{ztmc} </if>
+		  		  <if test="tyshxydm != null and tyshxydm != ''"> and tyshxydm = #{tyshxydm} </if>
+		  		  <if test="gsdjzh != null and gsdjzh != ''"> and gsdjzh = #{gsdjzh} </if>
+		  		  <if test="fddbrxm != null and fddbrxm != ''"> and fddbrxm = #{fddbrxm} </if>
+		  		  <if test="xmmc != null and xmmc != ''"> and xmmc = #{xmmc} </if>
+		  		  <if test="xzxkjdswh != null and xzxkjdswh != ''"> and xzxkjdswh = #{xzxkjdswh} </if>
+		  		  <if test="splb != null and splb != ''"> and splb = #{splb} </if>
+		  		  <if test="xknr != null and xknr != ''"> and xknr = #{xknr} </if>
+		  		  <if test="xksxq != null and xksxq != ''"> and xksxq = #{xksxq} </if>
+		  		  <if test="xkjzq != null and xkjzq != ''"> and xkjzq = #{xkjzq} </if>
+		  		  <if test="xkjg != null and xkjg != ''"> and xkjg = #{xkjg} </if>
+		  		  <if test="dqzt != null and dqzt != ''"> and dqzt = #{dqzt} </if>
+		  		  <if test="dfbm != null and dfbm != ''"> and dfbm = #{dfbm} </if>
+		  		  <if test="xxtgbm != null and xxtgbm != ''"> and xxtgbm = #{xxtgbm} </if>
+		  		  <if test="sjbssj != null and sjbssj != ''"> and sjbssj = #{sjbssj} </if>
+		  		  <if test="xycns != null and xycns != ''"> and xycns = #{xycns} </if>
+		  		  <if test="dz != null and dz != ''"> and dz = #{dz} </if>
+		  		  <if test="shouxcs != null and shouxcs != ''"> and shouxcs = #{shouxcs} </if>
+		  		  <if test="shixcs != null and shixcs != ''"> and shixcs = #{shixcs} </if>
+		  		  <if test="xzcfcs != null and xzcfcs != ''"> and xzcfcs = #{xzcfcs} </if>
+		  		  <if test="sh != null and sh != ''"> and sh = #{sh} </if>
+		  		  <if test="tjz != null and tjz != ''"> and tjz = #{tjz} </if>
+		  		  <if test="beiyong1 != null and beiyong1 != ''"> and beiyong1 = #{beiyong1} </if>
+		  		  <if test="beiyong2 != null and beiyong2 != ''"> and beiyong2 = #{beiyong2} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.xypjtx.domain.XzxkDO" useGeneratedKeys="true" keyProperty="xid">
+		insert into xypjtx_xzxk
+		(
+			`ztmc`, 
+			`tyshxydm`, 
+			`gsdjzh`, 
+			`fddbrxm`, 
+			`xmmc`, 
+			`xzxkjdswh`, 
+			`splb`, 
+			`xknr`, 
+			`xksxq`, 
+			`xkjzq`, 
+			`xkjg`, 
+			`dqzt`, 
+			`dfbm`, 
+			`xxtgbm`, 
+			`sjbssj`, 
+			`xycns`, 
+			`dz`, 
+			`shouxcs`, 
+			`shixcs`, 
+			`xzcfcs`, 
+			`sh`, 
+			`tjz`, 
+			`beiyong1`, 
+			`beiyong2`
+		)
+		values
+		(
+			#{ztmc}, 
+			#{tyshxydm}, 
+			#{gsdjzh}, 
+			#{fddbrxm}, 
+			#{xmmc}, 
+			#{xzxkjdswh}, 
+			#{splb}, 
+			#{xknr}, 
+			#{xksxq}, 
+			#{xkjzq}, 
+			#{xkjg}, 
+			#{dqzt}, 
+			#{dfbm}, 
+			#{xxtgbm}, 
+			#{sjbssj}, 
+			#{xycns}, 
+			#{dz}, 
+			#{shouxcs}, 
+			#{shixcs}, 
+			#{xzcfcs}, 
+			#{sh}, 
+			#{tjz}, 
+			#{beiyong1}, 
+			#{beiyong2}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.xypjtx.domain.XzxkDO">
+		update xypjtx_xzxk 
+		<set>
+			<if test="ztmc != null">`ztmc` = #{ztmc}, </if>
+			<if test="tyshxydm != null">`tyshxydm` = #{tyshxydm}, </if>
+			<if test="gsdjzh != null">`gsdjzh` = #{gsdjzh}, </if>
+			<if test="fddbrxm != null">`fddbrxm` = #{fddbrxm}, </if>
+			<if test="xmmc != null">`xmmc` = #{xmmc}, </if>
+			<if test="xzxkjdswh != null">`xzxkjdswh` = #{xzxkjdswh}, </if>
+			<if test="splb != null">`splb` = #{splb}, </if>
+			<if test="xknr != null">`xknr` = #{xknr}, </if>
+			<if test="xksxq != null">`xksxq` = #{xksxq}, </if>
+			<if test="xkjzq != null">`xkjzq` = #{xkjzq}, </if>
+			<if test="xkjg != null">`xkjg` = #{xkjg}, </if>
+			<if test="dqzt != null">`dqzt` = #{dqzt}, </if>
+			<if test="dfbm != null">`dfbm` = #{dfbm}, </if>
+			<if test="xxtgbm != null">`xxtgbm` = #{xxtgbm}, </if>
+			<if test="sjbssj != null">`sjbssj` = #{sjbssj}, </if>
+			<if test="xycns != null">`xycns` = #{xycns}, </if>
+			<if test="dz != null">`dz` = #{dz}, </if>
+			<if test="shouxcs != null">`shouxcs` = #{shouxcs}, </if>
+			<if test="shixcs != null">`shixcs` = #{shixcs}, </if>
+			<if test="xzcfcs != null">`xzcfcs` = #{xzcfcs}, </if>
+			<if test="sh != null">`sh` = #{sh}, </if>
+			<if test="tjz != null">`tjz` = #{tjz}, </if>
+			<if test="beiyong1 != null">`beiyong1` = #{beiyong1}, </if>
+			<if test="beiyong2 != null">`beiyong2` = #{beiyong2}</if>
+		</set>
+		where xId = #{xid}
+	</update>
+	
+	<delete id="remove">
+		delete from xypjtx_xzxk where xId = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from xypjtx_xzxk where xId in 
+		<foreach item="xid" collection="array" open="(" separator="," close=")">
+			#{xid}
+		</foreach>
+	</delete>
+
+</mapper>

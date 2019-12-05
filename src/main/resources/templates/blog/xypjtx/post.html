@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>信用公告</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link rel="stylesheet" href="/css/blog/mytab.css">
+</head>
+
+<style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        min-width: 1170px;
+        padding-left: 0;
+    }
+    .myPadding{
+        padding: 0;
+    }
+</style>
+
+<body style="height: 100%;width: 100%;">
+<div class="panel panel-default container">
+    <!--<div class="panel-heading">太原不锈钢产业园区政府管理系统</div>-->
+    <!--<div style="width: 100%;height: 100%;">-->
+        <!--<img src="/img/hyjm.jpg" style="width: 100%;height: 100%;">-->
+
+    <!--</div>-->
+    <div class="row" style="margin: 0;height: 100%;">
+        <!--<div class="col-xs-12" style="border-bottom: 1px solid #015b97">-->
+            <!--<span id="mkfl" style="font-size: 15px;"></span>-->
+        <!--</div>-->
+        <div class="col-xs-12">
+
+            <div class="col-xs-12" style="text-align: center;margin-top: 15px;font-size: 20px;">
+                <div style="width: auto;color: #015b97">
+                    <span>太原不锈钢产业园区</span></br>
+                    <span>企业信用评价体系</span>
+                </div>
+                <!--<div style="margin-top: 10px;">-->
+                    <!--<ul id="xFenlei" class="postFenlei">-->
+                        <!--&lt;!&ndash;18px;&ndash;&gt;-->
+                    <!--</ul>-->
+                <!--</div>-->
+            </div>
+            <!--<div class="col-xs-3" style="width:1px;height:70%;margin:0 auto;padding:0;margin-top: 4.6%;background-color:#015b97 "></div>-->
+            <div class="col-xs-10 col-sm-offset-1" style="border: 1px solid #dddddd;">
+                <div style="text-align: center">
+                    <h3 th:text="${xygg.title}"></h3>
+                </div>
+                <div id="fbt" style="display: none;text-align: center;"><!--border-bottom: 1px solid #015b97"-->
+                    <h4 th:text="${xygg.subtitle}"></h4>
+                </div>
+                <div id="time" style="text-align: right;border-bottom: 1px solid #015b97;">
+                    <span style="font-size: 15px;" th:text="${gtmCreate}"></span>
+                </div>
+                <div id="content" class="summernote" style="overflow-x: auto;">
+                </div>
+                <div id="fujian" style="display: none;font-size: 15px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/plugins/layer/layer.js"></script>
+<script src="/js/ajax-util.js"></script>
+<script src="/js/appjs/blog/clean-blog.min.js"></script>
+<script src="/js/plugins/summernote/summernote.min.js"></script>
+<script src="/js/plugins/summernote/summernote-zh-CN.js"></script>
+<script type="text/javascript" src="/js/appjs/blog/jquery.bxslider.js"></script>
+<script type="text/javascript" src="/ueditor/ueditor.parse.js"></script>
+
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function () {
+        $('.summernote').summernote({
+            lang: 'zh-CN'
+        });
+        var content = /*[[${xygg.content}]]*/
+            $('#content').code(content);
+        $('.summernote').destroy();
+        console.log(content);
+    });
+    var fbt = [[${xygg.subtitle}]];
+    if (fbt != ""){
+        document.getElementById("fbt").style.display = "block";
+    }
+    var fujian = [[${xygg.fujian}]];
+    var htmlfujian ="";
+    if (fujian != "" && fujian != null){
+        htmlfujian += '<a href=" '+fujian+' ">'+fujian.substring(fujian.lastIndexOf("/")+1)+'</a>';
+        $("#fujian").append(htmlfujian);
+        document.getElementById("fujian").style.display = "block";
+    }
+</script>
+</html>

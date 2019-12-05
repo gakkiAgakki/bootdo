@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<!--<script src="/js/content.js?v=1.0.0"></script>-->
+<script src="/js/layui.js"></script>
+<script src="/js/plugins/clipboard/clipboard.min.js"></script>
+<script src="/js/plugins/layer/layer.min.js"></script>
+<script src="/js/vue.min.js"></script>
+<link href="/css/layui.css" rel="stylesheet">
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="xId" name="xId" th:value="${xzxk.xid}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">主体名称：</label>
+								<div class="col-sm-8">
+									<input id="ztmc" name="ztmc" th:value="${xzxk.ztmc}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">统一社会信用代码：</label>
+								<div class="col-sm-8">
+									<input id="tyshxydm" name="tyshxydm" th:value="${xzxk.tyshxydm}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">工商登记证号：</label>
+								<div class="col-sm-8">
+									<input id="gsdjzh" name="gsdjzh" th:value="${xzxk.gsdjzh}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">法定代表人姓名：</label>
+								<div class="col-sm-8">
+									<input id="fddbrxm" name="fddbrxm" th:value="${xzxk.fddbrxm}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">项目名称：</label>
+								<div class="col-sm-8">
+									<input id="xmmc" name="xmmc" th:value="${xzxk.xmmc}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">行政许可决定书文号：</label>
+								<div class="col-sm-8">
+									<input id="xzxkjdswh" name="xzxkjdswh" th:value="${xzxk.xzxkjdswh}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">审批类别：</label>
+								<div class="col-sm-8">
+									<input id="splb" name="splb" th:value="${xzxk.splb}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">许可内容：</label>
+								<div class="col-sm-8">
+									<input id="xknr" name="xknr" th:value="${xzxk.xknr}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">许可生效期：</label>
+								<div class="col-sm-8">
+									<input id="xksxq" name="xksxq" th:value="${xksxq}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">许可截止期：</label>
+								<div class="col-sm-8">
+									<input id="xkjzq" name="xkjzq" th:value="${xkjzq}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">许可机关：</label>
+								<div class="col-sm-8">
+									<input id="xkjg" name="xkjg" th:value="${xzxk.xkjg}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">当前状态：</label>
+								<div class="col-sm-8">
+									<input id="dqzt" name="dqzt" th:value="${xzxk.dqzt}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">地方编码：</label>
+								<div class="col-sm-8">
+									<input id="dfbm" name="dfbm" th:value="${xzxk.dfbm}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">信息提供部门：</label>
+								<div class="col-sm-8">
+									<input id="xxtgbm" name="xxtgbm" th:value="${xzxk.xxtgbm}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">数据报送时间：</label>
+								<div class="col-sm-8">
+									<input id="sjbssj" name="sjbssj" th:value="${sjbssj}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">
+								<label class="col-sm-3 control-label">地址：</label>
+								<div class="col-sm-8">
+									<input id="dz" name="dz" th:value="${xzxk.dz}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">
+								<label class="col-sm-3 control-label">提交者：</label>
+								<div class="col-sm-8">
+									<input id="tjz" name="tjz" th:value="${xzxk.tjz}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">信用承诺书：</label>
+								<div id="fujian" class="col-sm-8">
+									<button type="button" class="layui-btn" id="uploadFile">
+										<i class="fa fa-cloud"></i>上传附件
+									</button>
+									<input id="xycns" name="xycns" th:value="${xzxk.xycns}" type="text" readonly>
+								</div>
+							</div>
+
+								<!--						<div class="form-group">
+								<label class="col-sm-3 control-label">守信次数：</label>
+								<div class="col-sm-8">
+									<input id="shouxcs" name="shouxcs" th:value="${xzxk.shouxcs}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">失信次数：</label>
+								<div class="col-sm-8">
+									<input id="shixcs" name="shixcs" th:value="${xzxk.shixcs}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">行政处罚次数：</label>
+								<div class="col-sm-8">
+									<input id="xzcfcs" name="xzcfcs" th:value="${xzxk.xzcfcs}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">审核：</label>
+								<div class="col-sm-8">
+									<input id="sh" name="sh" th:value="${xzxk.sh}" class="form-control" type="text">
+								</div>
+							</div>
+
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备用1：</label>
+								<div class="col-sm-8">
+									<input id="beiyong1" name="beiyong1" th:value="${xzxk.beiyong1}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备用2：</label>
+								<div class="col-sm-8">
+									<input id="beiyong2" name="beiyong2" th:value="${xzxk.beiyong2}" class="form-control" type="text">
+								</div>
+							</div>-->
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/xypjtx/xzxk/edit.js">
+	</script>
+</body>
+</html>

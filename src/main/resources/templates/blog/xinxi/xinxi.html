@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div class="fixed-table-toolbar">
+						<div class="columns pull-left">
+							<button shiro:hasPermission="blog:xinxi:add" type="button" class="btn  btn-primary" onclick="add()">
+								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+							<button shiro:hasPermission="blog:xinxi:shenhe" type="button" class="btn  btn-primary" onclick="shenhe()">
+								<i class="fa fa-plus" aria-hidden="true"></i>审核
+							</button>
+							<button shiro:hasPermission="blog:xinxi:shenhe" type="button" class="btn  btn-primary" onclick="quxiaoshenhe()">
+								<i class="fa fa-plus" aria-hidden="true"></i>取消审核
+							</button>
+							<button shiro:hasPermission="blog:xinxi:zhiding" type="button" class="btn  btn-primary" onclick="zhiding()">
+								<i class="fa fa-plus" aria-hidden="true"></i>置顶
+							</button>
+							<button shiro:hasPermission="blog:xinxi:zhiding" type="button" class="btn  btn-primary" onclick="quxiaozhiding()">
+								<i class="fa fa-plus" aria-hidden="true"></i>取消置顶
+							</button>
+							<button shiro:hasPermission="blog:xinxi:batchRemove" type="button" class="btn  btn-danger"
+								onclick="batchRemove()">
+								<i class="fa fa-trash" aria-hidden="true"></i>删除
+							</button>
+						</div>
+
+
+						<div class="columns pull-left col-md-2 nopadding" style="margin-left: 3%;">
+							<select name="searchMokuai" id="searchMokuai" onchange="mokuaiChange()"
+									class="form-control validate[required] input-background">
+								<option value="">--按模块查询--</option>
+							</select>
+							<input type="hidden" id="parentId" name="parentId" value="">
+						</div>
+						<div class="columns pull-left col-md-2 nopadding" style="margin-left: 1%;">
+							<select name="searchFenlei" id="searchFenlei" onchange="fenleiChange()"
+									class="form-control validate[required] input-background">
+								<option value="">--按分类查询--</option>
+							</select>
+						</div>
+
+
+						<div class="columns pull-right">
+							<button class="btn btn-success" onclick="reLoad()">查询</button>
+						</div>
+						<div class="columns pull-right col-md-2 nopadding">
+							<input id="searchName" name="searchName" type="text" class="form-control"
+								placeholder="">
+						</div>
+					</div>
+					<table id="exampleTable" data-mobile-responsive="true">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--shiro控制bootstraptable行内按钮看见性 来自bootdo的创新方案 -->
+		<div>
+			<script type="text/javascript">
+				var s_edit_h = 'hidden';
+				var s_remove_h = 'hidden';
+				var s_resetPwd_h = 'hidden';
+                var s_shenhe_h = 'hidden';
+                var s_quxiaoshenhe_h = 'hidden';
+                var s_zhiding_h = 'hidden';
+                var s_quxiaozhiding_h = 'hidden';
+			</script>
+		</div>
+		<div shiro:hasPermission="blog:xinxi:edit">
+			<script type="text/javascript">
+				s_edit_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="blog:xinxi:remove">
+			<script type="text/javascript">
+				var s_remove_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="blog:xinxi:resetPwd">
+			<script type="text/javascript">
+				var s_resetPwd_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="blog:xinxi:shenhe">
+			<script type="text/javascript">
+				var s_shenhe_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="blog:xinxi:shenhe">
+			<script type="text/javascript">
+				var s_quxiaoshenhe_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="blog:xinxi:zhiding">
+			<script type="text/javascript">
+				var s_zhiding_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="blog:xinxi:zhiding">
+			<script type="text/javascript">
+				var s_quxiaozhiding_h = '';
+			</script>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="/js/appjs/blog/xinxi/xinxi.js"></script>
+</body>
+</html>

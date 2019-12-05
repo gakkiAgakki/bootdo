@@ -1,0 +1,207 @@
+<head th:fragment="header">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+<meta name="description" content="">
+<meta name="author" content="">
+<title>太原不锈钢产业园区</title>
+	<!--<link rel="shortcut icon" href="logo.ico">-->
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/blog/clean-blog.css" rel="stylesheet">
+<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/blog/mytab.css" rel="stylesheet">
+<style type="text/css">
+	@media (max-width:768px){
+		.side{ display:none;  }
+		}
+	@media (min-width:768px){
+		.side{ display:block;  }
+		}
+	.side{
+		position: fixed;
+	    width: 50px;
+	    right: 5%;
+	    bottom: 15%;
+	    z-index: 100;
+	}
+	.side ul{
+		list-style:none;
+	}
+	.side ul li {
+	    width: 35px;
+	    height: 35px;
+	    float: left;
+	    position: relative;
+	    margin-top: 9px;
+	}
+	.side ul li .qqbdimg {
+	    padding: 7px;
+	    margin-top: 5px;
+	    margin-bottom: 1px;
+	    /* margin-left: 22px; */
+	    position: absolute;
+	    width: 53px;
+	    height: 54px;
+	    /* margin-left: 9px; */
+	    bottom: 0;
+	    right: -7px;
+	    transition: all 0.3s;
+	    background: #fff;
+	    opacity: 0;
+	    filter: Alpha(opacity=80);
+	    color: #fff;
+	    font: 14px/54px "微软雅黑";
+	    overflow: hidden;
+	}
+	.side ul li .qqbdimg:hover{
+		overflow:hidden;
+		padding: 7px;
+	    margin-top: 5px;
+	    width:124px;
+	    height:124px;
+	    opacity:1;
+	    z-index:100;
+	    right:0;
+	    background:rgb(142, 142, 142);
+	}
+	.side ul li img {
+	    width: 100%;
+	    height: 100%;
+	}
+	.side ul li .sidetop {
+	    height: 100%;
+	    display: block;
+	    background: #2f4050;
+	    padding: 2px 0;
+	    text-align: center;
+	    color: #fff;
+	    border-radius: 50%;
+	    opacity: .5;
+	}
+	/*.container{width: 1170px !important}*/
+</style>
+</head>
+<nav th:fragment="nav">
+	<div class="container">
+		<div class="navbar-header page-scroll">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+
+			<a href="/" ><img src="/img/xinxi/logo1.png" style="width: 230px;height: auto;margin-left: 7%;margin-top: 5%"></a>
+		</div>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right" style="margin-top: 20px">
+				<li><a href="/xContent">首页</a></li>
+				<li><a href="/xContent/open/listByMk?mokuai=园区概况">走进园区</a></li>
+				<li><a href="/xContent/open/listByMk?mokuai=机构设置">组织机构</a></li>
+				<li><a href="/xContent/open/listByMk?mokuai=党群工作">党群工作</a></li>
+				<li><a href="/xContent/open/listByMk?mokuai=招商服务">招商服务</a></li>
+				<li><a href="/xContent/open/listByMk?mokuai=企业服务安全监管">企业服务安全监管</a></li>
+				<!--<li><a href="/xContent/open/listByMk?mokuai=政府信息公开">政府信息公开</a></li>-->
+				<li><a href="http://ty.sxzwfw.gov.cn/buxiugangkaifaqu/govservice/powerlist">权责清单</a></li>
+				<li><a href="/xContent/open/toZaixianzixun">政民互动</a></li>
+				<li><a href="http://ty.sxzwfw.gov.cn/buxiugangkaifaqu/public/index?record=istrue">政务服务</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div th:fragment="footer">
+	<div style="background-color: #eeeeee;overflow: hidden;width: 100%;height: 50px;margin-top: 20px">
+		<div class="lianjie">
+			<select name="guojiazhengfu" id="guojiazhengfu" onchange="openUrl(this.value)"
+					class="form-control validate[required] input-background">
+				<option value="">国家政府网站</option>
+			</select>
+			<select name="shengjizhengfu" id="shengjizhengfu" onchange="openUrl(this.value)"
+					class="form-control validate[required] input-background">
+				<option value="">省级政府网站</option>
+			</select>
+			<select name="shijizhengfu" id="shijizhengfu" onchange="openUrl(this.value)"
+					class="form-control validate[required] input-background">
+				<option value="">市级政府网站</option>
+			</select>
+			<select name="kaifaqu" id="kaifaqu" onchange="openUrl(this.value)"
+					class="form-control validate[required] input-background">
+				<option value="">县、区级政府网站</option>
+			</select>
+		</div>
+	</div>
+	<footer style="background-color: #333333;overflow: hidden;height: 230px;">
+		<div class="footer1">
+			<p>主办单位 | 太原不锈钢产业园区</p>
+			<p>技术支持 | 山西浩科伟业科技有限公司</p>
+			<p>网站管理 | 晋ICP备11002547号</p>
+			<p>版权所有 | Copyright©2019-2023太原不锈钢产业园区</p>
+			<p>联系我们 | 0351-5655333</p>
+		</div>
+		<div class="footer2">
+			<img src="/img/ditu.png" style="width: 100%;height: 100%;">
+		</div>
+		<div class="footer3">
+			<img src="/img/erweima.png" style="width: 100%;height: 100%;margin-top: -230%;">
+		</div>
+	</footer>
+	<div class="side" >
+		<ul>
+			<!--<li>-->
+				<!--<div class="qqbdimg">-->
+					<!--<img src="/img/blog/qqbootdo.png" title="学习交流"/>-->
+				<!--</div>-->
+				<!--<a class="sidetop" id="qqbd" href="javascript:scroll(0,0)" title="学习交流"><i-->
+					<!--class="fa fa-qq"></i></a>-->
+			<!--</li>-->
+			<li>
+				<a class="sidetop" href="javascript:scroll(0,0)" title="返回顶部"><i
+					class="fa fa-arrow-up"></i></a>
+					
+			</li>
+		</ul>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/plugins/layer/layer.js"></script>
+	<script src="/js/ajax-util.js"></script>
+	<script src="/js/appjs/blog/clean-blog.min.js"></script>
+	<script src="/js/plugins/summernote/summernote.min.js"></script>
+	<script src="/js/plugins/summernote/summernote-zh-CN.js"></script>
+	<script type="text/javascript">
+        $(function () {
+			getLianjie("guojiazhengfu","国家政府网站");
+			getLianjie("shengjizhengfu","省级政府网站");
+			getLianjie("shijizhengfu","市级政府网站");
+			getLianjie("kaifaqu","县、区级政府网站");
+        })
+        function getLianjie(mid,leixing) {
+            $.ajax({
+//                url : '/xContent/open/lianjie?leixing='+leixing,
+                url : '/xContent/open/lianjie',
+                method : 'get',
+				data : {
+                    "leixing" : leixing
+				},
+                dataType : 'json',
+                success : function(rows) {
+//                    var rows = data.rows;
+                    var htmlText = "";
+                    for (i = 0; i < rows.length; i++) {
+						htmlText += '<option value="'+rows[i].url+'" onclick="openUrl('+rows[i].url+')">';
+						htmlText += rows[i].title;
+						htmlText += '</option>';
+                    }
+                    $("#"+mid+"").append(htmlText);
+                }
+            });
+        }
+        function openUrl(url) {
+            if (url != "") {
+            	window.open(url);
+        	}
+        }
+	</script>
+</div>
+

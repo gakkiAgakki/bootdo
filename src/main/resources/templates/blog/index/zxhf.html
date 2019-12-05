@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="utf-8">
+<head th:include="blog/index/include_blog::header"></head>
+<link href="/css/blog/jquery.bxslider.css" rel="stylesheet">
+<link href="/css/blog/mytab.css" rel="stylesheet">
+<!--<link rel="shortcut icon" href="logo.ico">-->
+<style type="text/css">
+	.mycolor{
+		background-color: #eeeeee;
+	}
+	.mytongyong{
+		width: 1152px;
+		margin-top: 20px;
+		margin-left: 15px;
+	}
+	html,body{
+		margin: 0;
+		padding: 0;
+	}
+	.container{min-width: 1170px;padding-left: 0;}
+	.menu {
+		/*font:12px verdana, arial, sans-serif;*/
+	}
+	.menu, .menu li {
+		list-style:none;
+		padding:0;
+		margin:0;
+	}
+	.menu li {
+		float:left;
+	}
+	.before {
+		/* 如果是中英文混排的文字，建议用固定宽度
+        width:150px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        */
+		display:block;
+		padding:5px 10px;
+		background:#eeeeee;
+		color:#146C9C;
+		text-decoration:none;
+	}
+	.after {
+		display:block;
+		padding:6px 10px;
+		background:#146C9C;
+		color:#fff;
+		text-decoration:white;
+	}
+	.menu li a.last {
+		border-right:0; /* 去掉左侧边框 */
+	}
+	.table-b table td{border:3px solid white;}
+</style>
+<body>
+	<!--<div>-->
+		<!--<tr>-->
+			<!--<td colspan="3">-->
+				<!--<img src="/img/xinxi/logo1.png" style="width: auto;height: auto;color: black" alt=""></td>-->
+		<!--</tr>-->
+	<!--</div>-->
+	<div style="height: 67px">
+		<nav th:include="blog/index/include_blog::nav" class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
+	</div>
+	<header class="intro-header container"
+		style="background-image: url('/img/xinxi/banner.png');width: auto;height: 400px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2 col-md-10 col-md-offset-1">
+					<div class="site-heading">
+						<!--<h1>太原不锈钢产业园区政府门户网站</h1>-->
+						<!--<span class="subheading">太原不锈钢产业园区政府门户网站</span>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12" style="border-bottom: 1px solid #015b97">
+				<span id="mkfl" style="font-size: 15px;"></span>
+			</div>
+			<div class="col-xs-12">
+
+				<div class="col-xs-3" style="text-align: center;margin-top: 15px;">
+					<div style="width: auto;color: #015b97">
+						<span>太原不锈钢产业园区</span>
+					</div>
+					<div style="margin-top: 10px;">
+						<ul id="xFenlei" class="postFenlei">
+<!--18px;-->
+						</ul>
+					</div>
+				</div>
+				<!--<div class="col-xs-3" style="width:1px;height:70%;margin:0 auto;padding:0;background-color:#015b97 "></div>-->
+				<div class="col-xs-9" style="border: 1px solid #dddddd;margin-top: 4.5%;">
+					<div>
+						<div class="adRTableDiv table-b" id="xZxzx">
+							<table style="margin-top: 1.5%;text-align: center;margin-bottom: 0;">
+								<tbody>
+									<tr style="height: 43px;text-align: center;background-color: #f5f5f5;">
+										<td colspan="4" style="color: #0085a1"><strong>咨询信息</strong></td>
+									</tr>
+									<tr style="height: 43px;">
+										<td style="background-color: #ebebeb;"><strong>标题：</strong></td>
+										<td style="background-color: #f5f5f5;" colspan="3" th:text="${xZxzx.title}"></td>
+									</tr>
+									<tr>
+										<td style="background-color: #ebebeb;"><strong>咨询内容：</strong></td>
+										<td colspan="3" style="background-color: #f5f5f5;text-align: left;">
+											<div style="min-height: 43px;" th:text="${xZxzx.zixunzhuti}">
+
+											</div>
+										</td>
+									</tr>
+									<tr style="height: 43px;">
+										<td style="width: 20%;background-color: #ebebeb;"><strong>咨询人</strong></td>
+										<td style="width: 30%;background-color: #f5f5f5;" th:text="${xZxzx.xingming}"></td>
+										<td style="width: 20%;background-color: #ebebeb;"><strong>回复时间</strong></td>
+										<td id="huifuTime" style="width: 30%;background-color: #f5f5f5;"></td>
+										<input type="hidden" id="sqlData" th:value="${xZxzx.huifuTime}">
+									</tr>
+									<tr>
+										<td style="background-color: #ebebeb;"><strong>回复内容：</strong></td>
+										<td colspan="3" style="text-align: left;">
+											<div style="min-height: 43px;background-color: #f5f5f5;" th:text="${xZxzx.huifu}">
+
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<div th:include="blog/index/include_blog::footer" class="container" style="width: 100%;padding-right: 0"></div>
+	<script type="text/javascript" src="/js/appjs/blog/jquery.bxslider.js"></script>
+	<!--<script type="text/javascript" src="/ueditor/ueditor.parse.js"></script>-->
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function () {
+
+        $("#zxzt").val($("#zxztinput").val());
+        $("#hfzt").val($("#hfztinput").val());
+
+        var htmlText = "";
+        htmlText += '<li style="background-image: url(' + "/img/2.png" + ')">';
+        htmlText += '<a href="/xContent/open/toZaixianzixun" title="在线咨询">';
+        htmlText += "在线咨询";
+        htmlText += '</a>';
+        htmlText += '</li>';
+
+        htmlText += '<li style="background-image: url(' + "/img/1.png" + ')">';
+        htmlText += '<a href="/xContent/open/zixunhuifu" title="咨询回复">';
+        htmlText += "咨询回复";
+        htmlText += '</a>';
+        htmlText += '</li>';
+
+        $("#xFenlei").append(htmlText);
+
+        var htmlmkfl = "";
+        htmlmkfl += "<a href='/xContent'>首页</a>";
+        htmlmkfl += ">><a href='/xContent/open/toZaixianzixun'>政民互动</a>";
+        htmlmkfl += ">><a href='/xContent/open/zixunhuifu'>咨询回复</a>";
+        $("#mkfl").append(htmlmkfl);
+
+		/*转换时间格式*/
+        var data = $("#sqlData").val();
+        if (data != null && data != ""){
+        	var c=todate(data, "-", false);
+        	c = c.split(" ")[0];
+        }
+        $('#huifuTime').text(c);
+		/*转换时间格式end*/
+    });
+    function todate(inputstr, showsplit, showweek) {
+        //Wed Mar 22 13:38:37 CST 2017
+        inputstr = inputstr + ""; //末尾加一个空格
+        var date = "";
+        var month = new Array();
+        var week = new Array();
+
+        month["Jan"] = 1; month["Feb"] = 2; month["Mar"] = 3; month["Apr"] = 4; month["May"] = 5; month["Jan"] = 6;
+        month["Jul"] = 7; month["Aug"] = 8; month["Sep"] = 9; month["Oct"] = 10; month["Nov"] = 11; month["Dec"] = 12;
+        week["Mon"] = "一"; week["Tue"] = "二"; week["Wed"] = "三"; week["Thu"] = "四"; week["Fri"] = "五"; week["Sat"] = "六"; week["Sun"] = "日";
+
+        str = inputstr.split(" ");
+
+        date = str[5];
+        date += showsplit + month[str[1]] + showsplit + str[2] + " " + str[3] ;
+        if(showweek){
+            date += "    " + " 星期" + week[str[0]];
+        }
+
+        return date;
+    }
+</script>
+</html>

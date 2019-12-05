@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="utf-8">
+<head th:include="blog/index/include_blog::header"></head>
+<link href="/css/blog/jquery.bxslider.css" rel="stylesheet">
+<link href="/css/blog/mytab.css" rel="stylesheet">
+<!--<link rel="shortcut icon" href="logo.ico">-->
+<style type="text/css">
+	.mycolor{
+		background-color: #eeeeee;
+	}
+	.mytongyong{
+		width: 1152px;
+		margin-top: 20px;
+		margin-left: 15px;
+	}
+	html,body{
+		margin: 0;
+		padding: 0;
+	}
+	.container{min-width: 1170px;padding-left: 0;}
+	.menu {
+		/*font:12px verdana, arial, sans-serif;*/
+	}
+	.menu, .menu li {
+		list-style:none;
+		padding:0;
+		margin:0;
+	}
+	.menu li {
+		float:left;
+	}
+	.before {
+		/* 如果是中英文混排的文字，建议用固定宽度
+        width:150px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        */
+		display:block;
+		padding:5px 10px;
+		background:#eeeeee;
+		color:#146C9C;
+		text-decoration:none;
+	}
+	.after {
+		display:block;
+		padding:6px 10px;
+		background:#146C9C;
+		color:#fff;
+		text-decoration:white;
+	}
+	.menu li a.last {
+		border-right:0; /* 去掉左侧边框 */
+	}
+	.table-b table td{border:1px solid black;width: 25%;height: 48px;}
+	.table-b table tr{border:none;}
+	.table-b table input{border:1px solid white;width: 80%;height: 30px;}
+	.table-b table textarea{border:1px solid white;width: 80%;height: 80px;margin-top: 1%;margin-bottom: 1%;float: left;}
+</style>
+<body>
+	<!--<div>-->
+		<!--<tr>-->
+			<!--<td colspan="3">-->
+				<!--<img src="/img/xinxi/logo1.png" style="width: auto;height: auto;color: black" alt=""></td>-->
+		<!--</tr>-->
+	<!--</div>-->
+	<div style="height: 67px">
+		<nav th:include="blog/index/include_blog::nav" class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
+	</div>
+	<header class="intro-header container"
+		style="background-image: url('/img/xinxi/banner.png');width: auto;height: 400px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2 col-md-10 col-md-offset-1">
+					<div class="site-heading">
+						<!--<h1>太原不锈钢产业园区政府门户网站</h1>-->
+						<!--<span class="subheading">太原不锈钢产业园区政府门户网站</span>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12" style="border-bottom: 1px solid #015b97">
+				<span id="mkfl" style="font-size: 15px;"></span>
+			</div>
+			<div class="col-xs-12">
+
+				<div class="col-xs-3" style="text-align: center;margin-top: 15px;">
+					<div style="width: auto;color: #015b97">
+						<span>太原不锈钢产业园区</span>
+					</div>
+					<div style="margin-top: 10px;">
+						<ul id="xFenlei" class="postFenlei">
+<!--18px;-->
+						</ul>
+					</div>
+				</div>
+				<!--<div class="col-xs-3" style="width:1px;height:70%;margin:0 auto;padding:0;background-color:#015b97 "></div>-->
+				<div class="col-xs-9" style="border: 1px solid #dddddd;margin-top: 4.6%;">
+					<div style="text-align: center;width: 100%;height: 40px;line-height: 40px;">
+						<strong>
+						太原不锈钢产业园区企业入园登记表
+						</strong>
+					</div>
+					<div class="ibox float-e-margins" style="margin-top: 0;">
+						<div class="ibox-content">
+							<form class="form-horizontal m-t" id="signupForm">
+
+								<div class="adRTableDiv table-b" id="xZxzx">
+									<table style="margin-top: 1.5%;text-align: center;margin-bottom: 0;border: none;">
+									<tbody>
+										<tr class="form-group">
+											<td>企业名称</td>
+											<td colspan="3">
+												<input id="title" name="title" class="form-control" type="text">
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td>法人代表</td>
+											<td>
+												<input id="frdb" name="frdb" class="form-control" type="text">
+											</td>
+											<td>联系方式</td>
+											<td>
+												<input id="frlxfs" name="frlxfs" class="form-control" type="text">
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td>项目联系人</td>
+											<td>
+												<input id="xmlxr" name="xmlxr" class="form-control" type="text">
+											</td>
+											<td>联系方式</td>
+											<td>
+												<input id="xmlxrlxfs" name="xmlxrlxfs" class="form-control" type="text">
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td>电子邮箱</td>
+											<td>
+												<input id="dzyx" name="dzyx" class="form-control" type="text">
+											</td>
+											<td>网址</td>
+											<td>
+												<input id="wz" name="wz" class="form-control" type="text">
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td>项目名称</td>
+											<td colspan="3">
+												<input id="xmmc" name="xmmc" class="form-control" type="text">
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td>注册总投资</td>
+											<td colspan="2" style="border-right-style: none;">
+												<input id="xmztz" name="xmztz" class="form-control" type="text">
+											</td>
+											<td style="border-left-style: none;text-align: left;">万元</td>
+										</tr>
+										<tr class="form-group">
+											<td>注册地址</td>
+											<td colspan="3">
+												<input id="zcdz" name="zcdz" class="form-control" type="text">
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td rowspan="3">主要建设（经营）内容</td>
+											<td colspan="3">
+												<div style="float:left;width:5%; margin-top:6%;margin-left: 3%;">1、</div>
+												<textarea id="zyjsnr1" name="zyjsnr1" class="form-control"></textarea>
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td colspan="3">
+												<div style="float:left;width:5%; margin-top:6%;margin-left: 3%;">2、</div>
+												<textarea id="zyjsnr2" name="zyjsnr2" class="form-control"></textarea>
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td colspan="3">
+												<div style="float:left;width:5%; margin-top:6%;margin-left: 3%;">3、</div>
+												<textarea id="zyjsnr3" name="zyjsnr3" class="form-control"></textarea>
+											</td>
+										</tr>
+										<tr class="form-group">
+											<td rowspan="2">入驻方式</td>
+											<td>租赁</td>
+											<td style="border-right-style:none; ">
+												<input id="rzfsZl" name="rzfsZl" class="form-control" type="text">
+											</td>
+											<td style="border-left-style: none;text-align: left;">平方米</td>
+										</tr>
+										<tr class="form-group">
+											<td>新增</td>
+											<td style="border-right-style:none; ">
+												<input id="rzfsXz" name="rzfsXz" class="form-control" type="text">
+											</td>
+											<td style="border-left-style: none;text-align: left;">平方米</td>
+										</tr>
+										<tr class="form-group">
+											<td rowspan="4">效益</td>
+											<td>预计年产值</td>
+											<td style="border-right-style:none; ">
+												<input id="xyYjncz" name="xyYjncz" class="form-control" type="text">
+											</td>
+											<td style="border-left-style: none;text-align: left;">万元</td>
+										</tr>
+										<tr class="form-group">
+											<td>年销售收入</td>
+											<td style="border-right-style:none; ">
+												<input id="xyNxssr" name="xyNxssr" class="form-control" type="text">
+											</td>
+											<td style="border-left-style: none;text-align: left;">万元</td>
+										</tr>
+										<tr class="form-group">
+											<td>年利润</td>
+											<td style="border-right-style:none; ">
+												<input id="xyNlr" name="xyNlr" class="form-control" type="text">
+											</td>
+											<td style="border-left-style: none;text-align: left;">万元</td>
+										</tr>
+										<tr class="form-group">
+											<td>年税收</td>
+											<td style="border-right-style:none; ">
+												<input id="xyNss" name="xyNss" class="form-control" type="text">
+											</td>
+											<td style="border-left-style: none;text-align: left;">万元</td>
+										</tr>
+										<tr style="border: none;">
+											<td colspan="5" style="border: none;">
+											<div style="text-align: center;margin-left: 25%;">
+											<div class="col-sm-3 pull_left">
+											<div class="form-group" style="margin-top: 15px;">
+											<input class="form-control" type="tel" name="verify" id="verify" placeholder="请输入验证码" maxlength="4">
+											</div>
+											</div>
+											<div class="col-sm-3 pull_left">
+											<a href="javascript:void(0);" rel="external nofollow" title="点击更换验证码">
+											<img style="margin-top: 12px;" id="imgVerify" src="" alt="更换验证码" height="36" width="100%" onclick="getVerify(this);">
+											</a>
+											</div>
+											<!--</div>-->
+
+											<!--<div class="form-group">-->
+											<div class="col-sm-3" style="text-align: center;margin-top: 15px;">
+											<button type="submit" class="btn btn-primary" style="height: 30px;width: 80px;padding: 0;">提交</button>
+											</div>
+											</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								</div>
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">企业名称：</label>-->
+									<!--<div class="col-sm-10">-->
+										<!--<input id="title" name="title" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">法人代表：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="frdb" name="frdb" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+									<!--<label class="col-sm-2 control-label">联系方式：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="frlxfs" name="frlxfs" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">项目联系人：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="xmlxr" name="xmlxr" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+									<!--<label class="col-sm-2 control-label">联系方式：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="xmlxrlxfs" name="xmlxrlxfs" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">电子邮箱：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="dzyx" name="dzyx" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+									<!--<label class="col-sm-2 control-label">网址：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="wz" name="wz" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+
+								<!--&lt;!&ndash;<div class="form-group" style="height: 1px;width: 102.7%;border-bottom: 1px solid black;"></div>&ndash;&gt;-->
+
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">项目名称：</label>-->
+									<!--<div class="col-sm-10">-->
+										<!--<input id="xmmc" name="xmmc" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">项目总投资：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="xmztz" name="xmztz" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+									<!--<label class="col-sm-2 control-label">注册地址：</label>-->
+									<!--<div class="col-sm-4">-->
+										<!--<input id="zcdz" name="zcdz" class="form-control" type="text">-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">经营内容1：</label>-->
+									<!--<div class="col-sm-10">-->
+										<!--&lt;!&ndash;<input id="zyjsnr1" name="zyjsnr1" class="form-control" type="text">&ndash;&gt;-->
+										<!--<textarea id="zyjsnr1" name="zyjsnr1" class="form-control" style="height: 130px;"></textarea>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">经营内容2：</label>-->
+									<!--<div class="col-sm-10">-->
+										<!--&lt;!&ndash;<input id="zyjsnr2" name="zyjsnr2" class="form-control" type="text">&ndash;&gt;-->
+										<!--<textarea id="zyjsnr2" name="zyjsnr2" class="form-control" style="height: 130px;"></textarea>-->
+									<!--</div>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label" >经营内容3：</label>-->
+									<!--<div class="col-sm-10">-->
+										<!--&lt;!&ndash;<input id="zyjsnr3" name="zyjsnr3" class="form-control" type="text">&ndash;&gt;-->
+										<!--<textarea id="zyjsnr3" name="zyjsnr3" class="form-control" style="height: 130px;"></textarea>-->
+									<!--</div>-->
+								<!--</div>-->
+
+								<!--&lt;!&ndash;<div class="form-group col-sm-12" style="height: 1px;width: 102.7%;border-bottom: 1px solid black;"></div>&ndash;&gt;-->
+
+								<!--<div class="form-group">-->
+									<!--<label style="text-align: center" class="col-sm-12 control-label">入驻方式</label>-->
+								<!--</div>-->
+
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">租赁：</label>-->
+									<!--<div class="col-sm-2">-->
+										<!--<input id="rzfsZl" name="rzfsZl" class="form-control" type="text">-->
+									<!--</div>-->
+									<!--<label style="text-align: left" class="col-sm-2 control-label">平方米</label>-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+									<!--<label class="col-sm-2 control-label">新增：</label>-->
+									<!--<div class="col-sm-2">-->
+										<!--<input id="rzfsXz" name="rzfsXz" class="form-control" type="text">-->
+									<!--</div>-->
+									<!--<label style="text-align: left" class="col-sm-2 control-label">平方米</label>-->
+								<!--</div>-->
+
+								<!--&lt;!&ndash;<div class="form-group" style="height: 1px;width: 102.7%;border-bottom: 1px solid black;"></div>&ndash;&gt;-->
+
+								<!--<div class="form-group">-->
+									<!--<label style="text-align: center" class="col-sm-12 control-label">效益</label>-->
+								<!--</div>-->
+
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">预计年产值：</label>-->
+									<!--<div class="col-sm-2">-->
+										<!--<input id="xyYjncz" name="xyYjncz" class="form-control" type="text">-->
+									<!--</div>-->
+									<!--<label style="text-align: left" class="col-sm-1 control-label">万元</label>-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--<div class="col-sm-1"></div>-->
+								<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+									<!--<label class="col-sm-2 control-label">年销售收入：</label>-->
+									<!--<div class="col-sm-2">-->
+										<!--<input id="xyNxssr" name="xyNxssr" class="form-control" type="text">-->
+									<!--</div>-->
+									<!--<label style="text-align: left" class="col-sm-1 control-label">万元</label>-->
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<!--<label class="col-sm-2 control-label">年利润：</label>-->
+									<!--<div class="col-sm-2">-->
+										<!--<input id="xyNlr" name="xyNlr" class="form-control" type="text">-->
+									<!--</div>-->
+									<!--<label style="text-align: left" class="col-sm-1 control-label">万元</label>-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--<div class="col-sm-1"></div>-->
+								<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+									<!--<label class="col-sm-2 control-label">年税收：</label>-->
+									<!--<div class="col-sm-2">-->
+										<!--<input id="xyNss" name="xyNss" class="form-control" type="text">-->
+									<!--</div>-->
+									<!--<label style="text-align: left" class="col-sm-1 control-label">万元</label>-->
+								<!--</div>-->
+
+								<!--<div class="row" style="text-align: center;margin-left: 35%;">-->
+									<!--<div class="col-sm-3 pull_center">-->
+										<!--<div class="form-group" style="margin-top: 15px;">-->
+											<!--<input class="form-control" type="tel" name="verify" id="verify" placeholder="请输入验证码" maxlength="4">-->
+										<!--</div>-->
+									<!--</div>-->
+									<!--<div class="col-sm-3 pull_left">-->
+										<!--<a href="javascript:void(0);" rel="external nofollow" title="点击更换验证码">-->
+											<!--<img style="margin-top: 12px;" id="imgVerify" src="" alt="更换验证码" height="36" width="100%" onclick="getVerify(this);">-->
+										<!--</a>-->
+									<!--</div>-->
+								<!--</div>-->
+
+								<!--<div class="form-group">-->
+									<!--<div class="col-sm-6 col-sm-offset-3" style="text-align: center">-->
+										<!--<button type="submit" class="btn btn-primary" style="height: 30px;width: 80px;padding: 0;">提交</button>-->
+									<!--</div>-->
+								<!--</div>-->
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<div th:include="blog/index/include_blog::footer" class="container" style="width: 100%;padding-right: 0"></div>
+	<script type="text/javascript" src="/js/appjs/blog/jquery.bxslider.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/js/plugins/validate/messages_zh.min.js"></script>
+	<script type="text/javascript" src="/js/appjs/blog/index/rysq.js"></script>
+<!--<script type="text/javascript" src="/ueditor/ueditor.parse.js"></script>-->
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function () {
+        var mokuai = [[${xMokuai}]];
+        var fenlei = [[${fenlei}]];
+        var xFenlei = [[${xFenlei}]];
+        var htmlText = "";
+        for (i = 0; i < xFenlei.length; i++) {
+
+            if (xFenlei[i].name == "入园申请"){
+                htmlText += '<li style="background-image: url(' + "/img/1.png" + ')">';
+                htmlText += '<a href="/xContent/open/toRysq" title="' + xFenlei[i].name + '">';
+                htmlText += xFenlei[i].name;
+                htmlText += '</a>';
+                htmlText += '</li>';
+			}else
+            if (xFenlei[i].name == fenlei) {
+                htmlText += '<li style="background-image: url(' + "/img/1.png" + ')">';
+                htmlText += '<a href="/xContent/open/listByMk?fenlei=' + xFenlei[i].name + '" title="' + xFenlei[i].name + '">';
+                htmlText += xFenlei[i].name;
+                htmlText += '</a>';
+                htmlText += '</li>';
+            } else {
+
+                htmlText += '<li style="background-image: url(' + "/img/2.png" + ')">';
+                htmlText += '<a href="/xContent/open/listByMk?fenlei=' + xFenlei[i].name + '" title="' + xFenlei[i].name + '">';
+                htmlText += xFenlei[i].name;
+                htmlText += '</a>';
+                htmlText += '</li>';
+            }
+        }
+        $("#xFenlei").append(htmlText);
+
+        var htmlmkfl = "";
+        htmlmkfl += "<a href='/xContent'>首页</a>";
+        htmlmkfl += ">><a href='/xContent/open/listByMk?mokuai="+mokuai+"'>" + mokuai +"</a>";
+        if (fenlei != "" && fenlei != null){
+            if (fenlei == "入园申请"){
+                htmlmkfl += ">><a href='/xContent/open/toRysq'>" +fenlei+"</a>";
+            }else {
+                htmlmkfl += ">><a href='/xContent/open/listByMk?fenlei="+fenlei+"'>" +fenlei+"</a>";
+            }
+        }
+        $("#mkfl").append(htmlmkfl);
+
+        $("#imgVerify").click();
+
+
+    });
+
+    //获取验证码
+    function getVerify(obj) {
+        obj.src = "/xContent/open/getVerify?" + Math.random();
+        console.log(obj)
+    }
+</script>
+</html>
