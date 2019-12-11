@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<script src="/js/content.js?v=1.0.0"></script>
+<script src="/js/layui.js"></script>
+<script src="/js/plugins/clipboard/clipboard.min.js"></script>
+<script src="/js/plugins/layer/layer.min.js"></script>
+<script src="/js/vue.min.js"></script>
+<link href="/css/layui.css" rel="stylesheet">
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${gsqd.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">事项名称：</label>
+								<div class="col-sm-8">
+									<input id="title" name="title" th:value="${gsqd.title}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">编码：</label>
+								<div class="col-sm-8">
+									<input id="bianma" name="bianma" th:value="${gsqd.bianma}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">职权类型：</label>
+								<div class="col-sm-8">
+									<select name="zqlx" id="zqlx"
+											class="form-control validate[required] input-background">
+										<option th:value="${gsqd.zqlx}" th:text="${gsqd.zqlx}"></option>
+
+									</select>
+									<!--<input id="zqlx" name="zqlx" th:value="${gsqd.zqlx}" class="form-control" type="text">-->
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">行使主体：</label>
+								<div class="col-sm-8">
+									<select name="xszt" id="xszt"
+											class="form-control validate[required] input-background">
+										<option th:value="${gsqd.xszt}" th:text="${gsqd.xszt}"></option>
+
+									</select>
+									<!--<input id="xszt" name="xszt" th:value="${gsqd.xszt}" class="form-control" type="text">-->
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">实施部门：</label>
+								<div class="col-sm-8">
+									<input id="ssbm" name="ssbm" th:value="${gsqd.ssbm}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">职权依据：</label>
+								<div class="col-sm-8">
+									<textarea id="zqyj" name="zqyj" class="form-control" style="height: 150px;width: 100%"></textarea>
+									<input id="zqyjtext" th:value="${gsqd.zqyj}" type="hidden">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">责任事项：</label>
+								<div class="col-sm-8">
+									<textarea id="zrsx" name="zrsx" class="form-control" style="height: 150px;width: 100%"></textarea>
+									<input id="zrsxtext" th:value="${gsqd.zrsx}" type="hidden">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">责任事项依据：</label>
+								<div class="col-sm-8">
+									<textarea id="zrsxyj" name="zrsxyj" class="form-control" style="height: 150px;width: 100%"></textarea>
+									<input id="zrsxyjtext" th:value="${gsqd.zrsxyj}" type="hidden">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注：</label>
+								<div class="col-sm-8">
+									<textarea id="beizhu" name="beizhu" class="form-control" style="height: 150px;width: 100%"></textarea>
+									<input id="beizhutext" th:value="${gsqd.beizhu}" type="hidden">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">办事指南表：</label>
+								<div class="col-sm-4">
+									<button type="button" class="layui-btn" id="uploadBsznb">
+										<i class="fa fa-cloud"></i>上传图片
+									</button>
+									<input id="bsznb" name="bsznb" th:value="${gsqd.bsznb}" th:title="${gsqd.bsznb}" readonly />
+									<!--<input id="bsznb" name="bsznb" class="form-control" type="text">-->
+								</div>
+								<!--</div>-->
+								<!--<div class="form-group">	-->
+								<label class="col-sm-2 control-label">运行流程图：</label>
+								<div class="col-sm-4">
+									<button type="button" class="layui-btn" id="uploadYxlct">
+										<i class="fa fa-cloud"></i>上传图片
+									</button>
+									<input id="yxlct" name="yxlct" th:value="${gsqd.yxlct}" th:title="${gsqd.yxlct}" readonly />
+									<!--<input id="yxlct" name="yxlct" class="form-control" type="text">-->
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">廉政风险防控图：</label>
+								<div class="col-sm-4">
+									<button type="button" class="layui-btn" id="uploadLzfxfkt">
+										<i class="fa fa-cloud"></i>上传图片
+									</button>
+									<input id="lzfxfkt" name="lzfxfkt" th:value="${gsqd.lzfxfkt}" th:title="${gsqd.lzfxfkt}" readonly />
+									<!--<input id="lzfxfkt" name="lzfxfkt" class="form-control" type="text">-->
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/qzgs/gsqd/edit.js">
+	</script>
+</body>
+</html>

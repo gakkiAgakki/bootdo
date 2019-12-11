@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="utf-8">
+<head th:include="blog/index/include_blog::header"></head>
+<link href="/css/blog/jquery.bxslider.css" rel="stylesheet">
+<link href="/css/blog/mytab.css" rel="stylesheet">
+<!--<link rel="shortcut icon" href="logo.ico">-->
+<style type="text/css">
+	.mycolor{
+		background-color: #eeeeee;
+	}
+	.mytongyong{
+		width: 1152px;
+		margin-top: 20px;
+		margin-left: 15px;
+	}
+	html,body{
+		margin: 0;
+		padding: 0;
+	}
+	.container{min-width: 1170px;padding-left: 0;}
+	.menu {
+		/*font:12px verdana, arial, sans-serif;*/
+	}
+	.menu, .menu li {
+		list-style:none;
+		padding:0;
+		margin:0;
+	}
+	.menu li {
+		float:left;
+	}
+	.before {
+		/* 如果是中英文混排的文字，建议用固定宽度
+        width:150px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        */
+		display:block;
+		padding:5px 10px;
+		background:#eeeeee;
+		color:#146C9C;
+		text-decoration:none;
+	}
+	.after {
+		display:block;
+		padding:6px 10px;
+		background:#146C9C;
+		color:#fff;
+		text-decoration:white;
+	}
+	.menu li a.last {
+		border-right:0; /* 去掉左侧边框 */
+	}
+</style>
+<body>
+	<!--<div>-->
+		<!--<tr>-->
+			<!--<td colspan="3">-->
+				<!--<img src="/img/xinxi/logo1.png" style="width: auto;height: auto;color: black" alt=""></td>-->
+		<!--</tr>-->
+	<!--</div>-->
+	<div style="height: 67px">
+		<nav th:include="blog/index/include_blog::nav" class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
+	</div>
+	<header class="intro-header container"
+		style="background-image: url('/img/xinxi/banner.png');width: auto;height: 400px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2 col-md-10 col-md-offset-1">
+					<div class="site-heading">
+						<!--<h1>太原不锈钢产业园区政府门户网站</h1>-->
+						<!--<span class="subheading">太原不锈钢产业园区政府门户网站</span>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12" style="border-bottom: 1px solid #015b97">
+				<span id="mkfl" style="font-size: 15px;"></span>
+			</div>
+			<div class="col-xs-12">
+
+				<div class="col-xs-3" style="text-align: center;margin-top: 15px;">
+					<div style="width: auto;color: #015b97">
+						<span>太原不锈钢产业园区</span>
+					</div>
+					<div style="margin-top: 10px;">
+						<ul id="xFenlei" class="postFenlei">
+<!--18px;-->
+						</ul>
+					</div>
+				</div>
+				<!--<div class="col-xs-3" style="width:1px;height:70%;margin:0 auto;padding:0;background-color:#015b97 "></div>-->
+				<div class="col-xs-9" style="border: 1px solid #dddddd;margin-top: 4.5%;">
+					<div class="ibox float-e-margins">
+						<div class="ibox-content">
+
+							<div style="text-align: center;width: 100%;height: 40px;line-height: 40px;">
+								在线咨询
+							</div>
+
+							<form class="form-horizontal m-t" id="signupForm" style="margin-top: 0;">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">咨询标题：</label>
+									<div class="col-sm-10">
+										<input id="title" name="title" class="form-control" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">姓 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：</label>
+									<div class="col-sm-4">
+										<input id="xingming" name="xingming" class="form-control" type="text">
+									</div>
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<label class="col-sm-2 control-label">单位名称：</label>
+									<div class="col-sm-4">
+										<input id="danweiname" name="danweiname" class="form-control" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">手机号码：</label>
+									<div class="col-sm-4">
+										<input id="dianhua" name="dianhua" class="form-control" type="text">
+									</div>
+								<!--</div>-->
+								<!--<div class="form-group">-->
+									<label class="col-sm-2 control-label">邮 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 箱：</label>
+									<div class="col-sm-4">
+										<input id="youxiang" name="youxiang" class="form-control" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">联系地址：</label>
+									<div class="col-sm-10">
+										<input id="lianxidizhi" name="lianxidizhi" class="form-control" type="text">
+									</div>
+								</div>
+
+								<!--<div class="form-group" style="height: 1px;width: 102.7%;border-bottom: 1px solid black;"></div>-->
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" style="line-height: 200px;">咨询内容：</label>
+									<div class="col-sm-10">
+										<!--<input id="zyjsnr1" name="zyjsnr1" class="form-control" type="text">-->
+										<textarea id="zixunzhuti" name="zixunzhuti" class="form-control" style="height: 200px;"></textarea>
+									</div>
+								</div>
+								<input id="zixunTime" name="zixunTime" type="hidden">
+
+								<div class="row" style="text-align: center;margin-left: 25%;">
+									<div class="col-sm-3 pull_left">
+										<div class="form-group" style="margin-top: 15px;">
+											<input class="form-control" type="tel" name="verify" id="verify" placeholder="请输入验证码" maxlength="4">
+										</div>
+									</div>
+									<div class="col-sm-3 pull_left">
+										<a href="javascript:void(0);" rel="external nofollow" title="点击更换验证码">
+											<img style="margin-top: 12px;" id="imgVerify" src="" alt="更换验证码" height="36" width="100%" onclick="getVerify(this);">
+										</a>
+									</div>
+								<!--</div>-->
+
+								<!--<div class="form-group">-->
+									<div class="col-sm-3" style="text-align: center;margin-top: 15px;">
+										<button type="submit" class="btn btn-primary" style="height: 30px;width: 80px;padding: 0;">提交</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<div th:include="blog/index/include_blog::footer" class="container" style="width: 100%;padding-right: 0"></div>
+	<script type="text/javascript" src="/js/appjs/blog/jquery.bxslider.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/js/plugins/validate/messages_zh.min.js"></script>
+	<script type="text/javascript" src="/js/appjs/blog/index/toZaixianzixun.js"></script>
+<!--<script type="text/javascript" src="/ueditor/ueditor.parse.js"></script>-->
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function () {
+		var htmlText = "";
+		htmlText += '<li style="background-image: url(' + "/img/1.png" + ')">';
+		htmlText += '<a href="/xContent/open/toZaixianzixun" title="在线咨询">';
+		htmlText += "在线咨询";
+		htmlText += '</a>';
+		htmlText += '</li>';
+
+		htmlText += '<li style="background-image: url(' + "/img/2.png" + ')">';
+		htmlText += '<a href="/xContent/open/zixunhuifu" title="咨询回复">';
+		htmlText += "咨询回复";
+		htmlText += '</a>';
+		htmlText += '</li>';
+
+        $("#xFenlei").append(htmlText);
+
+        var htmlmkfl = "";
+        htmlmkfl += "<a href='/xContent'>首页</a>";
+        htmlmkfl += ">><a href='/xContent/open/toZaixianzixun'>政民互动</a>";
+		htmlmkfl += ">><a href='/xContent/open/toZaixianzixun'>在线咨询</a>";
+        $("#mkfl").append(htmlmkfl);
+
+		/*添加时间*/
+        var date = new Date();
+
+        var year = date.getFullYear();
+
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        var currentdate=year+'-'+month+'-'+day+'  '+ hour + ':'+minute+':'+second;
+        //获取当前时间 yyyy-MM-dd HH:mm:ss
+        // var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate + " " +date.getHours() + seperator2 + date.getMinutes() + seperator2 + date.getSeconds();
+        $('#zixunTime').val(currentdate);
+
+        $("#imgVerify").click();
+
+    });
+
+    //获取验证码
+    function getVerify(obj) {
+        obj.src = "/xContent/open/getVerify?" + Math.random();
+        console.log(obj)
+    }
+</script>
+</html>

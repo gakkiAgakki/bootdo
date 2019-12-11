@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">标题：</label>
+								<div class="col-sm-8">
+									<input id="title" name="title" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">咨询时间：</label>
+								<div class="col-sm-8">
+									<input id="zixunTime" name="zixunTime" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">
+								<label class="col-sm-3 control-label">姓名：</label>
+								<div class="col-sm-8">
+									<input id="xingming" name="xingming" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">单位名称：</label>
+								<div class="col-sm-8">
+									<input id="danweiname" name="danweiname" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系电话：</label>
+								<div class="col-sm-8">
+									<input id="dianhua" name="dianhua" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">邮箱：</label>
+								<div class="col-sm-8">
+									<input id="youxiang" name="youxiang" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系地址：</label>
+								<div class="col-sm-8">
+									<input id="lianxidizhi" name="lianxidizhi" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">内容：</label>
+								<div class="col-sm-8">
+									<textarea id="zixunzhuti" name="zixunzhuti" style="height: 150px;width: 100%" class="form-control"></textarea>
+									<!--<input id="zixunzhuti" name="zixunzhuti" class="form-control" type="text">-->
+								</div>
+							</div>
+														<div class="form-group">
+								<label class="col-sm-3 control-label">回复部门：</label>
+								<div class="col-sm-8">
+									<input id="huifuBumen" name="huifuBumen" class="form-control" type="text">
+									<!--<input id="huifu" name="huifu" class="form-control" type="text">-->
+								</div>
+							</div>
+														<div class="form-group">
+								<label class="col-sm-3 control-label">回复时间：</label>
+								<div class="col-sm-8">
+									<input id="huifuTime" name="huifuTime" class="form-control" type="text">
+									<!--<input id="huifu" name="huifu" class="form-control" type="text">-->
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">回复：</label>
+								<div class="col-sm-8">
+									<textarea id="huifu" name="huifu" style="height: 150px;width: 100%" class="form-control"></textarea>
+									<!--<input id="huifu" name="huifu" class="form-control" type="text">-->
+								</div>
+							</div>
+														<!--<div class="form-group">	-->
+								<!--<label class="col-sm-3 control-label">审核：</label>-->
+								<!--<div class="col-sm-8">-->
+									<!--<input id="shenhe" name="shenhe" class="form-control" type="text">-->
+								<!--</div>-->
+							<!--</div>-->
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/zixunfuwu/zaixianzixun/add.js">
+	</script>
+</body>
+</html>

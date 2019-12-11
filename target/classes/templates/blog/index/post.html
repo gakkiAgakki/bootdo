@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="utf-8">
+<head th:include="blog/index/include_blog::header"></head>
+<link href="/css/blog/jquery.bxslider.css" rel="stylesheet">
+<link href="/css/blog/mytab.css" rel="stylesheet">
+<!--<link rel="shortcut icon" href="logo.ico">-->
+<style type="text/css">
+	.mycolor{
+		background-color: #eeeeee;
+	}
+	.mytongyong{
+		width: 1152px;
+		margin-top: 20px;
+		margin-left: 15px;
+	}
+	html,body{
+		margin: 0;
+		padding: 0;
+	}
+	.container{min-width: 1170px;padding-left: 0;}
+	.menu {
+		/*font:12px verdana, arial, sans-serif;*/
+	}
+	.menu, .menu li {
+		list-style:none;
+		padding:0;
+		margin:0;
+	}
+	.menu li {
+		float:left;
+	}
+	.before {
+		/* 如果是中英文混排的文字，建议用固定宽度
+        width:150px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        */
+		display:block;
+		padding:5px 10px;
+		background:#eeeeee;
+		color:#146C9C;
+		text-decoration:none;
+	}
+	.after {
+		display:block;
+		padding:6px 10px;
+		background:#146C9C;
+		color:#fff;
+		text-decoration:white;
+	}
+	.menu li a.last {
+		border-right:0; /* 去掉左侧边框 */
+	}
+</style>
+<body>
+	<!--<div>-->
+		<!--<tr>-->
+			<!--<td colspan="3">-->
+				<!--<img src="/img/xinxi/logo1.png" style="width: auto;height: auto;color: black" alt=""></td>-->
+		<!--</tr>-->
+	<!--</div>-->
+	<div style="height: 67px">
+		<nav th:include="blog/index/include_blog::nav" class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
+	</div>
+	<header class="intro-header container"
+		style="background-image: url('/img/xinxi/banner.png');width: auto;height: 400px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2 col-md-10 col-md-offset-1">
+					<div class="site-heading">
+						<!--<h1>太原不锈钢产业园区政府门户网站</h1>-->
+						<!--<span class="subheading">太原不锈钢产业园区政府门户网站</span>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12" style="border-bottom: 1px solid #015b97">
+				<span id="mkfl" style="font-size: 15px;"></span>
+			</div>
+			<div class="col-xs-12">
+
+				<div class="col-xs-3" style="text-align: center;margin-top: 15px;">
+					<div style="width: auto;color: #015b97">
+						<span>太原不锈钢产业园区</span>
+					</div>
+					<div style="margin-top: 10px;">
+						<ul id="xFenlei" class="postFenlei">
+						</ul>
+					</div>
+				</div>
+				<!--<div class="col-xs-3" style="width:1px;height:70%;margin:0 auto;padding:0;background-color:#015b97 margin-top: 15px "></div>-->
+				<div class="col-xs-9" style="border: 1px solid #dddddd;margin-top: 4.6%;">
+					<div style="text-align: center">
+						<h3 th:text="${xContent.title}"></h3>
+					</div>
+					<div id="fbt" style="display: none;text-align: center;"><!--border-bottom: 1px solid #015b97"-->
+						<h4 th:text="${xContent.subtitle}"></h4>
+					</div>
+					<div id="time" style="text-align: right;border-bottom: 1px solid #015b97;">
+						<span style="font-size: 15px;" th:text="${gtmCreate}"></span>
+					</div>
+					<div id="content" class="summernote" style="overflow-x: auto;">
+					</div>
+					<div id="fujian" style="display: none;font-size: 15px;">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<div th:include="blog/index/include_blog::footer" class="container" style="width: 100%;padding-right: 0"></div>
+	<script type="text/javascript" src="/js/appjs/blog/jquery.bxslider.js"></script>
+	<script type="text/javascript" src="/ueditor/ueditor.parse.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function () {
+        $('.summernote').summernote({
+            lang: 'zh-CN'
+        });
+        var content = /*[[${xContent.content}]]*/
+            $('#content').code(content);
+        $('.summernote').destroy();
+
+        var fenlei = [[${xContent.fenlei}]];
+
+        var htmlText = "";
+        var xFenlei = [[${xFenlei}]];
+        for (i = 0; i < xFenlei.length; i++) {
+
+            if (xFenlei[i].name == "入园申请"){
+                htmlText += '<li style="background-image: url(' + "/img/2.png" + ')">';
+                htmlText += '<a href="/xContent/open/toRysq" title="' + xFenlei[i].name + '">';
+                htmlText += xFenlei[i].name;
+                htmlText += '</a>';
+                htmlText += '</li>';
+            }else
+            if (xFenlei[i].name == fenlei) {
+                htmlText += '<li style="background-image: url('+"/img/1.png"+')">';
+                htmlText += '<a href="/xContent/open/listByMk?fenlei=' + xFenlei[i].name + '" title="' + xFenlei[i].name + '">';
+                htmlText += xFenlei[i].name;
+                htmlText += '</a>';
+                htmlText += '</li>';
+            } else {
+
+				htmlText += '<li style="background-image: url('+"/img/2.png"+')">';
+				htmlText += '<a href="/xContent/open/listByMk?fenlei=' + xFenlei[i].name + '" title="' + xFenlei[i].name + '">';
+				htmlText += xFenlei[i].name;
+				htmlText += '</a>';
+				htmlText += '</li>';
+        	}
+        }
+        $("#xFenlei").append(htmlText);
+
+        var fbt = [[${xContent.subtitle}]];
+		if (fbt != ""){
+            document.getElementById("fbt").style.display = "block";
+		}
+		var fujian = [[${xContent.fujian}]];
+		var htmlfujian ="";
+		if (fujian != ""){
+			htmlfujian += '<a href=" '+fujian+' ">'+fujian.substring(fujian.lastIndexOf("/")+1)+'</a>';
+            $("#fujian").append(htmlfujian);
+            document.getElementById("fujian").style.display = "block";
+		}
+		var mokuai = [[${xContent.mokuai}]];
+//		var fenlei = [[${xContent.fenlei}]];
+		var htmlmkfl = "";
+		htmlmkfl += "<a href='/xContent'>首页</a>";
+		htmlmkfl += ">><a href='/xContent/open/listByMk?mokuai="+mokuai+"'>" + mokuai +"</a>";
+		htmlmkfl += ">><a href='/xContent/open/listByMk?fenlei="+fenlei+"'>" +fenlei+"</a>";
+        $("#mkfl").append(htmlmkfl);
+    });
+</script>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="sId" name="sId" th:value="${sxorsx.sid}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">主体名称：</label>
+								<div class="col-sm-8">
+									<input id="ztmc" name="ztmc" th:value="${sxorsx.ztmc}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">统一社会信用代码：</label>
+								<div class="col-sm-8">
+									<input id="tyshxydm" name="tyshxydm" th:value="${sxorsx.tyshxydm}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">工商登记证号：</label>
+								<div class="col-sm-8">
+									<input id="gsdjzh" name="gsdjzh" th:value="${sxorsx.gsdjzh}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">守信领域：</label>
+								<div class="col-sm-8">
+									<input id="shouxly" name="shouxly" th:value="${sxorsx.shouxly}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">失信领域：</label>
+								<div class="col-sm-8">
+									<input id="shixly" name="shixly" th:value="${sxorsx.shixly}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">列入原因：</label>
+								<div class="col-sm-8">
+									<input id="lryy" name="lryy" th:value="${sxorsx.lryy}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">决定机关：</label>
+								<div class="col-sm-8">
+									<input id="jdjg" name="jdjg" th:value="${sxorsx.jdjg}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">移出日期：</label>
+								<div class="col-sm-8">
+									<input id="ycrq" name="ycrq" th:value="${ycrq}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">移出原因：</label>
+								<div class="col-sm-8">
+									<input id="ycyy" name="ycyy" th:value="${sxorsx.ycyy}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">待办推送日期：</label>
+								<div class="col-sm-8">
+									<input id="dbtsrq" name="dbtsrq" th:value="${dbtsrq}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">信息提供部门：</label>
+								<div class="col-sm-8">
+									<input id="xxtgbm" name="xxtgbm" th:value="${sxorsx.xxtgbm}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">信息报送人：</label>
+								<div class="col-sm-8">
+									<input id="xxbsr" name="xxbsr" th:value="${sxorsx.xxbsr}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">信息报送日期：</label>
+								<div class="col-sm-8">
+									<input id="xxbsrq" name="xxbsrq" th:value="${xxbsrq}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">最后修改日期：</label>
+								<div class="col-sm-8">
+									<input id="zhxgrq" name="zhxgrq" th:value="${zhxgrq}" class="form-control" type="text">
+								</div>
+							</div>
+									<!--					<div class="form-group">
+								<label class="col-sm-3 control-label">审核：</label>
+								<div class="col-sm-8">
+									<input id="sh" name="sh" th:value="${sxorsx.sh}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备用1：</label>
+								<div class="col-sm-8">
+									<input id="by1" name="by1" th:value="${sxorsx.by1}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备用2：</label>
+								<div class="col-sm-8">
+									<input id="by2" name="by2" th:value="${sxorsx.by2}" class="form-control" type="text">
+								</div>
+							</div>-->
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/xypjtx/sxorsx/edit.js">
+	</script>
+</body>
+</html>

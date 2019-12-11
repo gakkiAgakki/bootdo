@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.zixunfuwu.dao.ZaixianzixunDao">
+
+	<select id="get" resultType="com.bootdo.zixunfuwu.domain.ZaixianzixunDO">
+		select `id`,`title`,`xingming`,`danweiname`,`dianhua`,`youxiang`,`lianxidizhi`,`zixunzhuti`,`huifu`,`shenhe`,`zixun_time`,`huifu_time`,`huifu_bumen` from zixun_zaixianzixun where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.zixunfuwu.domain.ZaixianzixunDO">
+		select `id`,`title`,`xingming`,`danweiname`,`dianhua`,`youxiang`,`lianxidizhi`,`zixunzhuti`,`huifu`,`shenhe`,`zixun_time`,`huifu_time`,`huifu_bumen` from zixun_zaixianzixun
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="xingming != null and xingming != ''"> and xingming = #{xingming} </if>
+		  		  <if test="danweiname != null and danweiname != ''"> and danweiname = #{danweiname} </if>
+		  		  <if test="dianhua != null and dianhua != ''"> and dianhua = #{dianhua} </if>
+		  		  <if test="youxiang != null and youxiang != ''"> and youxiang = #{youxiang} </if>
+		  		  <if test="lianxidizhi != null and lianxidizhi != ''"> and lianxidizhi = #{lianxidizhi} </if>
+		  		  <if test="zixunzhuti != null and zixunzhuti != ''"> and zixunzhuti = #{zixunzhuti} </if>
+		  		  <if test="huifu != null and huifu != ''"> and huifu = #{huifu} </if>
+		  		  <if test="shenhe != null and shenhe != ''"> and shenhe = #{shenhe} </if>
+				  <if test="zixunTime != null and zixunTime != ''"> and zixun_time = #{zixunTime} </if>
+				  <if test="huifuTime != null and huifuTime != ''"> and huifu_time = #{huifuTime} </if>
+				  <if test="huifuBumen != null and huifuBumen != ''"> and huifu_bumen = #{huifuBumen} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from zixun_zaixianzixun
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="xingming != null and xingming != ''"> and xingming = #{xingming} </if>
+		  		  <if test="danweiname != null and danweiname != ''"> and danweiname = #{danweiname} </if>
+		  		  <if test="dianhua != null and dianhua != ''"> and dianhua = #{dianhua} </if>
+		  		  <if test="youxiang != null and youxiang != ''"> and youxiang = #{youxiang} </if>
+		  		  <if test="lianxidizhi != null and lianxidizhi != ''"> and lianxidizhi = #{lianxidizhi} </if>
+		  		  <if test="zixunzhuti != null and zixunzhuti != ''"> and zixunzhuti = #{zixunzhuti} </if>
+		  		  <if test="huifu != null and huifu != ''"> and huifu = #{huifu} </if>
+		  		  <if test="shenhe != null and shenhe != ''"> and shenhe = #{shenhe} </if>
+			 	  <if test="zixunTime != null and zixunTime != ''"> and zixun_time = #{zixunTime} </if>
+				  <if test="huifuTime != null and huifuTime != ''"> and huifu_time = #{huifuTime} </if>
+				  <if test="huifuBumen != null and huifuBumen != ''"> and huifu_bumen = #{huifuBumen} </if>
+		  		</where>
+	</select>
+
+	<insert id="save" parameterType="com.bootdo.zixunfuwu.domain.ZaixianzixunDO" useGeneratedKeys="true" keyProperty="id">
+		insert into zixun_zaixianzixun
+		(
+			`title`, 
+			`xingming`, 
+			`danweiname`, 
+			`dianhua`, 
+			`youxiang`, 
+			`lianxidizhi`, 
+			`zixunzhuti`, 
+			`huifu`, 
+			`shenhe`,
+			`zixun_time`,
+			`huifu_time`,
+			`huifu_bumen`
+		)
+		values
+		(
+			#{title},
+			#{xingming},
+			#{danweiname},
+			#{dianhua},
+			#{youxiang},
+			#{lianxidizhi},
+			#{zixunzhuti},
+			#{huifu},
+			#{shenhe},
+			#{zixunTime},
+			#{huifuTime},
+			#{huifuBumen}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.bootdo.zixunfuwu.domain.ZaixianzixunDO">
+		update zixun_zaixianzixun
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="xingming != null">`xingming` = #{xingming}, </if>
+			<if test="danweiname != null">`danweiname` = #{danweiname}, </if>
+			<if test="dianhua != null">`dianhua` = #{dianhua}, </if>
+			<if test="youxiang != null">`youxiang` = #{youxiang}, </if>
+			<if test="lianxidizhi != null">`lianxidizhi` = #{lianxidizhi}, </if>
+			<if test="zixunzhuti != null">`zixunzhuti` = #{zixunzhuti}, </if>
+			<if test="huifu != null">`huifu` = #{huifu}, </if>
+			<if test="shenhe != null">`shenhe` = #{shenhe}, </if>
+			<if test="zixunTime != null">`zixun_time` = #{zixunTime}, </if>
+			<if test="huifuTime != null">`huifu_time` = #{huifuTime}, </if>
+			<if test="huifuBumen != null">`huifu_bumen` = #{huifuBumen}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from zixun_zaixianzixun where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from zixun_zaixianzixun where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	<update id="batchShenHe">
+		UPDATE zixun_zaixianzixun
+		<set>
+			`shenhe` = 1
+		</set>
+		where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+	<update id="batchQuxiaoshenhe">
+		UPDATE zixun_zaixianzixun
+		<set>
+			`shenhe` = 0
+		</set>
+		where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+</mapper>

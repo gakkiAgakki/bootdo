@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>信用公告</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/blog/mytab.css">
+</head>
+
+<style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        min-width: 1170px;
+        padding-left: 0;
+    }
+    .myPadding{
+        padding: 0;
+    }
+    .adRtext li{
+        text-align: center;
+    }
+</style>
+
+<body style="height: 100%;width: 100%;">
+<div class="panel panel-default container">
+    <!--<div class="panel-heading">太原不锈钢产业园区政府管理系统</div>-->
+    <!--<div style="width: 100%;height: 100%;">-->
+    <!--<img src="/img/hyjm.jpg" style="width: 100%;height: 100%;">-->
+
+    <!--</div>-->
+    <div class="row" style="margin: 0;height: 100%;">
+        <!--<div class="col-xs-12" style="border-bottom: 1px solid #015b97">-->
+        <!--<span id="mkfl" style="font-size: 15px;"></span>-->
+        <!--</div>-->
+        <div class="col-xs-12">
+
+            <div class="col-xs-12" style="text-align: center;margin-top: 15px;font-size: 20px;">
+                <div style="width: auto;color: #015b97">
+                    <span>太原不锈钢产业园区</span></br>
+                    <span>企业信用评价体系</span>
+                </div>
+                <!--<div style="margin-top: 10px;">-->
+                <!--<ul id="xFenlei" class="postFenlei">-->
+                <!--&lt;!&ndash;18px;&ndash;&gt;-->
+                <!--</ul>-->
+                <!--</div>-->
+            </div>
+            <!--<div class="col-xs-3" style="width:1px;height:70%;margin:0 auto;padding:0;margin-top: 4.6%;background-color:#015b97 "></div>-->
+            <div class="col-xs-10 col-sm-offset-1" style="border: 1px solid #dddddd;">
+                <div style="text-align: center">
+                    <!--<table>-->
+                    <!--<tr th:each="xContent ,state: ${xContent}">-->
+
+                    <!--<td><a th:href="/xContent/open/post/${xContent.cid}" th:title="${xContent.title}" th:text="${xContent.title}"></a></td>-->
+                    <!--<td th:text="${xContent.gtmCreate}"></td>-->
+                    <!--</tr>-->
+                    <!--</table>-->
+                    <ul class="adRtext" id="xycx" style="margin-top: 2%;text-align: center;">
+                        <li style="line-height: 40px;padding: 0;background-color: #337ab7;color: white;list-style: none;font-size: 18px;">
+                            <span style="float: left;width: 40%;">公司名称</span>
+                            <span style="float: left;width: 30%;">统一社会信用代码</span>
+                            <span >工商注册号</span>
+                        </li>
+                    </ul>
+                </div>
+                <div align="center" style="margin-top:2%;font-size: 15px;">
+                    <!--总共<a th:text="${page.pages}"/>页|-->
+                    <!--第<a th:text="${page.getPageNum()}"/>页|-->
+                    <!--<a th:href="@{/xContent/open/listByMk?(page=${page.firstPage},fenlei=${fenlei},mokuai=${xMokuai})}" class="f">首页</a>|-->
+                    <!--<a th:href="@{/xContent/open/listByMk?(page=${page.prePage},fenlei=${fenlei},mokuai=${xMokuai})}" class="f">上一页</a>|-->
+                    <!--<a th:href="@{/xContent/open/listByMk?(page=${page.nextPage},fenlei=${fenlei},mokuai=${xMokuai})}" class="la">下一页</a>|-->
+                    <!--<a th:href="@{/xContent/open/listByMk?(page=${page.lastPage},fenlei=${fenlei},mokuai=${xMokuai})}" class="la">尾页</a>-->
+                    <!--<input type="hidden" id="first" th:value="${page.getPageNum()}"/>-->
+                    <!--<input type="hidden" id="last" th:value="${page.pages}"/>-->
+                    总共<a th:text="${page.pages}"/>页|
+                    第<a th:text="${page.getPageNum()}"/>页|
+                    <input type="hidden" id="first" th:value="${page.getPageNum()}"/>
+                    <input type="hidden" id="last" th:value="${page.pages}"/>
+                    <a href="javascript:void(0)" th:onclick="'javascript:pageFun(\''+ '1' +'\');'">首页</a>|
+                    <a href="javascript:void(0);" th:onclick="'javascript:pageFun(\''+${page.prePage} +'\');'">上一页</a>|
+                    <a href="javascript:void(0);" th:onclick="'javascript:pageFun(\''+${page.nextPage} +'\');'">下一页</a>|
+                    <a href="javascript:void(0);" th:onclick="'javascript:pageFun(\''+${page.pages} +'\');'">尾页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/jquery.min.js"></script>
+<!--<script src="/js/openTab.js"></script>-->
+<script type="text/javascript" src="/js/appjs/blog/jquery.bxslider.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function () {
+
+//        var mokuai = [[${xMokuai}]];
+//        var fenlei = [[${fenlei}]];
+//        var xFenlei = [[${xFenlei}]];
+//        var htmlText = "";
+//        for (i = 0; i < xFenlei.length; i++) {
+//
+//            if (xFenlei[i].name == "入园申请"){
+//                htmlText += '<li style="background-image: url(' + "/img/2.png" + ')">';
+//                htmlText += '<a href="/xContent/open/toRysq" title="' + xFenlei[i].name + '">';
+//                htmlText += xFenlei[i].name;
+//                htmlText += '</a>';
+//                htmlText += '</li>';
+//            }else
+//            if (xFenlei[i].name == "党的十九届四中全会精神"){
+//                htmlText += '<li style="background-image: url(' + "/img/2.png" + ')">';
+//                htmlText += '<a href="/xContent/open/listByMk?fenlei=' + xFenlei[i].name + '" style="width: 80%;" title="' + xFenlei[i].name + '">';
+//                htmlText += xFenlei[i].name;
+//                htmlText += '</a>';
+//                htmlText += '</li>';
+//            }else
+//            if (xFenlei[i].name == fenlei) {
+//                htmlText += '<li style="background-image: url('+"/img/1.png"+')">';
+//                htmlText += '<a href="/xContent/open/listByMk?fenlei=' + xFenlei[i].name + '" title="' + xFenlei[i].name + '">';
+//                htmlText += xFenlei[i].name;
+//                htmlText += '</a>';
+//                htmlText += '</li>';
+//            } else {
+//
+//                htmlText += '<li style="background-image: url('+"/img/2.png"+')">';
+//                htmlText += '<a href="/xContent/open/listByMk?fenlei=' + xFenlei[i].name + '" title="' + xFenlei[i].name + '">';
+//                htmlText += xFenlei[i].name;
+//                htmlText += '</a>';
+//                htmlText += '</li>';
+//            }
+//        }
+//        $("#xFenlei").append(htmlText);
+
+        var content = [[${xycxList}]];
+//        console.log(content);
+
+//        if (content.length == 1 && $("#last").val() == 1){
+//            for (i = 0; i < content.length; i++) {
+//                window.location.href = "/xContent/open/post/"+ content[i].cid;
+//            }
+//            return;
+//        }
+
+        var htmlCon = "";
+        for (i = 0; i < content.length; i++) {
+//            var time = content[i].gtmCreate;
+//            time = time.split("T")[0];
+//            time = time.split(" ")[0];
+            var ztmc = content[i].ztmc;
+            var tyshxydm = content[i].tyshxydm;
+            var gsdjzh = content[i].gsdjzh;
+            if ( i % 2 == 0){
+                htmlCon += '<li style="line-height: 40px;padding: 0;background-color: #eeeeee;height: 40px;">';
+//                htmlCon += '<a href="/xContent/open/post/' + content[i].cid + '" title="'+title+'" style="float: left;width: 90%;">';
+                htmlCon += '<a href="/xypjtx/open/xzxk/' + content[i].tyshxydm + '" title="'+ztmc+'" style="float: left;width: 40%;">';
+                htmlCon += ztmc.substring(0,30);
+                htmlCon += '</a>';
+                htmlCon += '<span style="width: 30%;float: left;">' + tyshxydm;
+                htmlCon += '</span>';
+                htmlCon += '<span style="width: 30%;float: left;">' + gsdjzh;
+                htmlCon += '</span>';
+                htmlCon += '</li>';
+            }else {
+                htmlCon += '<li style="line-height: 40px;padding: 0;height: 40px;">';
+//                htmlCon += '<a href="/xContent/open/post/' + content[i].cid + '" title="'+title+'" style="float: left;width: 90%;">';
+                htmlCon += '<a href="/xypjtx/open/xzxk/' + content[i].tyshxydm + '" title="'+ztmc+'" style="float: left;width: 40%;">';
+                htmlCon += ztmc.substring(0,30);
+                htmlCon += '</a>';
+                htmlCon += '<span style="width: 30%;float: left;">' + tyshxydm;
+                htmlCon += '</span>';
+                htmlCon += '<span style="width: 30%;float: left;">' + gsdjzh;
+                htmlCon += '</span>';
+                htmlCon += '</li>';
+            }
+        }
+        $("#xycx").append(htmlCon);
+
+
+//        var htmlmkfl = "";
+//        htmlmkfl += "<a href='/xContent'>首页</a>";
+//        htmlmkfl += ">><a href='/xContent/open/listByMk?mokuai="+mokuai+"'>" + mokuai +"</a>";
+//        if (fenlei != "" && fenlei != null){
+//            if (fenlei == "入园申请"){
+//                htmlmkfl += ">><a href='/xContent/open/toRysq'>" +fenlei+"</a>";
+//            }else {
+//                htmlmkfl += ">><a href='/xContent/open/listByMk?fenlei="+fenlei+"'>" +fenlei+"</a>";
+//            }
+//        }
+//        $("#mkfl").append(htmlmkfl);
+
+    });
+
+    function pageFun(pages) {
+        var pageNum = $("#first").val();
+        var lastPage = $("#last").val();
+        pages = Number(pages);
+        pageNum = Number(pageNum);
+        lastPage = Number(lastPage);
+
+        //alert(pages+"==="+pageNum+"===="+lastPage);
+//        if (fenlei == null || fenlei == "" || fenlei == "null"){
+//            fenlei = "";
+//        }
+//        if (mokuai == null || mokuai == "" || mokuai == "null"){
+//            mokuai = "";
+//        }
+        if ( (pages < 1) || (pages == 0) || (pages > lastPage) || (pages == pageNum)){
+
+            return ;
+        }
+        window.location.href="/xypjtx/open/xyggList?page="+pages;
+    }
+</script>
+</html>

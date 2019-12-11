@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.qzgs.dao.GsqdDao">
+
+	<select id="get" resultType="com.bootdo.qzgs.domain.GsqdDO">
+		select `id`,`title`,`bianma`,`zqlx`,`xszt`,`ssbm`,`zqyj`,`zrsx`,`zrsxyj`,`beizhu`,`bsznb`,`yxlct`,`lzfxfkt` from qzgs_gsqd where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.qzgs.domain.GsqdDO">
+		select `id`,`title`,`bianma`,`zqlx`,`xszt`,`ssbm`,`zqyj`,`zrsx`,`zrsxyj`,`beizhu`,`bsznb`,`yxlct`,`lzfxfkt` from qzgs_gsqd
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="bianma != null and bianma != ''"> and bianma = #{bianma} </if>
+		  		  <if test="zqlx != null and zqlx != ''"> and zqlx = #{zqlx} </if>
+		  		  <if test="xszt != null and xszt != ''"> and xszt = #{xszt} </if>
+		  		  <if test="ssbm != null and ssbm != ''"> and ssbm = #{ssbm} </if>
+		  		  <if test="zqyj != null and zqyj != ''"> and zqyj = #{zqyj} </if>
+		  		  <if test="zrsx != null and zrsx != ''"> and zrsx = #{zrsx} </if>
+		  		  <if test="zrsxyj != null and zrsxyj != ''"> and zrsxyj = #{zrsxyj} </if>
+		  		  <if test="beizhu != null and beizhu != ''"> and beizhu = #{beizhu} </if>
+		  		  <if test="bsznb != null and bsznb != ''"> and bsznb = #{bsznb} </if>
+		  		  <if test="yxlct != null and yxlct != ''"> and yxlct = #{yxlct} </if>
+		  		  <if test="lzfxfkt != null and lzfxfkt != ''"> and lzfxfkt = #{lzfxfkt} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from qzgs_gsqd
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="bianma != null and bianma != ''"> and bianma = #{bianma} </if>
+		  		  <if test="zqlx != null and zqlx != ''"> and zqlx = #{zqlx} </if>
+		  		  <if test="xszt != null and xszt != ''"> and xszt = #{xszt} </if>
+		  		  <if test="ssbm != null and ssbm != ''"> and ssbm = #{ssbm} </if>
+		  		  <if test="zqyj != null and zqyj != ''"> and zqyj = #{zqyj} </if>
+		  		  <if test="zrsx != null and zrsx != ''"> and zrsx = #{zrsx} </if>
+		  		  <if test="zrsxyj != null and zrsxyj != ''"> and zrsxyj = #{zrsxyj} </if>
+		  		  <if test="beizhu != null and beizhu != ''"> and beizhu = #{beizhu} </if>
+		  		  <if test="bsznb != null and bsznb != ''"> and bsznb = #{bsznb} </if>
+		  		  <if test="yxlct != null and yxlct != ''"> and yxlct = #{yxlct} </if>
+		  		  <if test="lzfxfkt != null and lzfxfkt != ''"> and lzfxfkt = #{lzfxfkt} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.qzgs.domain.GsqdDO" useGeneratedKeys="true" keyProperty="id">
+		insert into qzgs_gsqd
+		(
+			`title`, 
+			`bianma`, 
+			`zqlx`, 
+			`xszt`, 
+			`ssbm`, 
+			`zqyj`, 
+			`zrsx`, 
+			`zrsxyj`, 
+			`beizhu`, 
+			`bsznb`, 
+			`yxlct`, 
+			`lzfxfkt`
+		)
+		values
+		(
+			#{title}, 
+			#{bianma}, 
+			#{zqlx}, 
+			#{xszt}, 
+			#{ssbm}, 
+			#{zqyj}, 
+			#{zrsx}, 
+			#{zrsxyj}, 
+			#{beizhu}, 
+			#{bsznb}, 
+			#{yxlct}, 
+			#{lzfxfkt}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.qzgs.domain.GsqdDO">
+		update qzgs_gsqd 
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="bianma != null">`bianma` = #{bianma}, </if>
+			<if test="zqlx != null">`zqlx` = #{zqlx}, </if>
+			<if test="xszt != null">`xszt` = #{xszt}, </if>
+			<if test="ssbm != null">`ssbm` = #{ssbm}, </if>
+			<if test="zqyj != null">`zqyj` = #{zqyj}, </if>
+			<if test="zrsx != null">`zrsx` = #{zrsx}, </if>
+			<if test="zrsxyj != null">`zrsxyj` = #{zrsxyj}, </if>
+			<if test="beizhu != null">`beizhu` = #{beizhu}, </if>
+			<if test="bsznb != null">`bsznb` = #{bsznb}, </if>
+			<if test="yxlct != null">`yxlct` = #{yxlct}, </if>
+			<if test="lzfxfkt != null">`lzfxfkt` = #{lzfxfkt}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from qzgs_gsqd where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from qzgs_gsqd where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	<select id="getLbOrBm" resultType="com.bootdo.qzgs.domain.LeibeidanweiDO">
+		select ql.name,ql.leixing from qzgs_leibeidanwei ql ORDER BY id ASC ;
+	</select>
+
+</mapper>

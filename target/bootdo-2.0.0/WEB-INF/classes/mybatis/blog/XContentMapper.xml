@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.blog.dao.XContentDao">
+
+	<select id="get" resultType="com.bootdo.blog.domain.XinxiDO">
+		select `cid`,`title`,`subtitle`,`created`,`modified`,`content`,`fenlei`,`status`,`author`,`gtm_create`,`gtm_modified`,`mokuai`,`shouyetupian`,`zhiding`,`fujian` from blog_xinxi where cid = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.blog.domain.XinxiDO">
+		select `cid`,`title`,`subtitle`,`created`,`modified`,`content`,`fenlei`,`status`,`author`,`gtm_create`,`gtm_modified`,`mokuai`,`shouyetupian`,`zhiding`,`fujian` from blog_xinxi
+        <where>
+			status = 1
+		  		  <if test="cid != null and cid != ''"> and cid = #{cid} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <!--<if test="title != null and title != ''"> and title LIKE '%${title}%' </if>-->
+		  		  <if test="subtitle != null and subtitle != ''"> and subtitle = #{subtitle} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="modified != null and modified != ''"> and modified = #{modified} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="fenlei != null and fenlei != ''"> and fenlei = #{fenlei} </if>
+		  		  <!--<if test="status != null and status != ''"> and status = #{status} </if>-->
+		  		  <if test="author != null and author != ''"> and author = #{author} </if>
+		  		  <if test="gtmCreate != null and gtmCreate != ''"> and gtm_create = #{gtmCreate} </if>
+		  		  <if test="gtmModified != null and gtmModified != ''"> and gtm_modified = #{gtmModified} </if>
+		  		  <if test="mokuai != null and mokuai != ''"> and mokuai = #{mokuai} </if>
+		  		  <if test="shouyetupian != null and shouyetupian != ''"> and shouyetupian = #{shouyetupian} </if>
+		  		  <if test="zhiding != null and zhiding != ''"> and zhiding = #{zhiding} </if>
+		  		  <if test="fujian != null and fujian != ''"> and fujian = #{fujian} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , ${sort} ${order}
+            </when>
+			<otherwise>
+                order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , gtm_create desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+<select id="getAll" resultType="com.bootdo.blog.domain.XinxiDO">
+	select `cid`,`title`,`subtitle`,`created`,`modified`,`content`,`fenlei`,`status`,`author`,`gtm_create`,`gtm_modified`,`mokuai`,`shouyetupian`,`zhiding`,`fujian` from blog_xinxi
+	<where>
+		status = 1
+		<if test="cid != null and cid != ''"> and cid = #{cid} </if>
+		<if test="title != null and title != ''"> and title = #{title} </if>
+		<!--<if test="title != null and title != ''"> and title LIKE '%${title}%' </if>-->
+		<if test="subtitle != null and subtitle != ''"> and subtitle = #{subtitle} </if>
+		<if test="created != null and created != ''"> and created = #{created} </if>
+		<if test="modified != null and modified != ''"> and modified = #{modified} </if>
+		<if test="content != null and content != ''"> and content = #{content} </if>
+		<if test="fenlei != null and fenlei != ''"> and fenlei = #{fenlei} </if>
+		<!--<if test="status != null and status != ''"> and status = #{status} </if>-->
+		<if test="author != null and author != ''"> and author = #{author} </if>
+		<if test="gtmCreate != null and gtmCreate != ''"> and gtm_create = #{gtmCreate} </if>
+		<if test="gtmModified != null and gtmModified != ''"> and gtm_modified = #{gtmModified} </if>
+		<if test="mokuai != null and mokuai != ''"> and mokuai = #{mokuai} </if>
+		<if test="shouyetupian != null and shouyetupian != ''"> and shouyetupian = #{shouyetupian} </if>
+		<if test="zhiding != null and zhiding != ''"> and zhiding = #{zhiding} </if>
+		<if test="fujian != null and fujian != ''"> and fujian = #{fujian} </if>
+	</where>
+	<choose>
+		<when test="sort != null and sort.trim() != ''">
+			order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , ${sort} ${order}
+		</when>
+		<otherwise>
+			order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , gtm_create desc
+		</otherwise>
+	</choose>
+</select>
+	<select id="getByMk" resultType="com.bootdo.blog.domain.XinxiDO">
+		SELECT  `cid`,`title`,`subtitle`,`created`,`modified`,`content`,`fenlei`,`status`,`author`,`gtm_create`,`gtm_modified`,`mokuai`,`shouyetupian`,`zhiding`,`fujian` from blog_xinxi
+		<where>
+			1 = 1
+			<!--<if test="mokuai != null and mokuai != ''"> and mokuai = #{mokuai} </if>-->
+		</where>
+		and status = 1 order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , cid desc
+	</select>
+
+	<select id="count1" resultType="int">
+		select count(*) from blog_xinxi
+	</select>
+
+	<select id="findPic" resultType="com.bootdo.blog.domain.XinxiDO">
+		select `cid`,`title`,`subtitle`,`created`,`modified`,`content`,`fenlei`,`status`,`author`,`gtm_create`,`gtm_modified`,`mokuai`,`shouyetupian`,`zhiding`,`fujian` from blog_xinxi
+        <where>
+			status = 1
+		  		  <if test="cid != null and cid != ''"> and cid = #{cid} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <!--<if test="title != null and title != ''"> and title LIKE '%${title}%' </if>-->
+		  		  <!--<if test="subtitle != null and subtitle != ''"> and subtitle = #{subtitle} </if>-->
+		  		  <!--<if test="created != null and created != ''"> and created = #{created} </if>-->
+		  		  <!--<if test="modified != null and modified != ''"> and modified = #{modified} </if>-->
+		  		  <!--<if test="content != null and content != ''"> and content = #{content} </if>-->
+		  		  <if test="fenlei != null and fenlei != ''"> and fenlei = #{fenlei} </if>
+		  		  <!--<if test="status != null and status != ''"> and status = #{status} </if>-->
+		  		  <!--<if test="author != null and author != ''"> and author = #{author} </if>-->
+		  		  <!--<if test="gtmCreate != null and gtmCreate != ''"> and gtm_create = #{gtmCreate} </if>-->
+		  		  <!--<if test="gtmModified != null and gtmModified != ''"> and gtm_modified = #{gtmModified} </if>-->
+		  		  <if test="mokuai != null and mokuai != ''"> and mokuai = #{mokuai} </if>
+		  		   and shouyetupian !=""
+		  		  <!--<if test="zhiding != null and zhiding != ''"> and zhiding = #{zhiding} </if>-->
+		  		  <!--<if test="fujian != null and fujian != ''"> and fujian = #{fujian} </if>-->
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , ${sort} ${order}
+            </when>
+			<otherwise>
+                order by CASE WHEN zhiding =1 THEN 0 ELSE 1 END , gtm_create desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="getFenleilist" resultType="com.bootdo.common.domain.FenleiDO" parameterType="java.lang.String">
+		SELECT sf.* FROM sys_fenlei sf
+		<where>
+			sf.mokuaiName = #{mokuai}
+		</where>
+		order by sf.id ASC
+	</select>
+	<select id="getFenleiByFenlei" resultType="com.bootdo.common.domain.FenleiDO" parameterType="java.lang.String">
+		SELECT * FROM sys_fenlei sf
+		INNER JOIN sys_fenlei sf1 ON sf1.mokuaiName = sf.mokuaiName
+		<where>
+			sf1.name = #{name}
+		</where>
+		order by sf.id ASC
+	</select>
+
+	<select id="getFenleiById" resultType="com.bootdo.common.domain.FenleiDO" >
+		SELECT * FROM sys_fenlei AS sf
+		INNER JOIN sys_mokuai AS sm ON sf.mokuaiName = sm.name
+		INNER JOIN blog_xinxi AS bx ON sm.name = bx.mokuai
+		WHERE bx.cid = #{cid}
+	</select>
+	<select id="getFenleiDo" resultType="com.bootdo.common.domain.FenleiDO" >
+		SELECT * FROM sys_fenlei AS sf WHERE sf.name = #{name}
+	</select>
+
+ 	<select id="count" resultType="int">
+		select count(*) from blog_xinxi
+		 <where>  
+		  		  <if test="cid != null and cid != ''"> and cid = #{cid} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="subtitle != null and subtitle != ''"> and subtitle = #{subtitle} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="modified != null and modified != ''"> and modified = #{modified} </if>
+		  		  <if test="content != null and content != ''"> and content = #{content} </if>
+		  		  <if test="fenlei != null and fenlei != ''"> and fenlei = #{fenlei} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="author != null and author != ''"> and author = #{author} </if>
+		  		  <if test="gtmCreate != null and gtmCreate != ''"> and gtm_create = #{gtmCreate} </if>
+		  		  <if test="gtmModified != null and gtmModified != ''"> and gtm_modified = #{gtmModified} </if>
+		  		  <if test="mokuai != null and mokuai != ''"> and mokuai = #{mokuai} </if>
+		  		  <if test="shouyetupian != null and shouyetupian != ''"> and shouyetupian = #{shouyetupian} </if>
+		  		  <if test="zhiding != null and zhiding != ''"> and zhiding = #{zhiding} </if>
+		  		  <if test="fujian != null and fujian != ''"> and fujian = #{fujian} </if>
+		  		</where>
+	</select>
+
+	<insert id="rysqSave" parameterType="com.bootdo.blog.domain.RysqDO" useGeneratedKeys="true" keyProperty="cid">
+		insert into blog_rysq
+		(
+			`title`,
+			`frdb`,
+			`frlxfs`,
+			`xmlxr`,
+			`xmlxrlxfs`,
+			`dzyx`,
+			`wz`,
+			`xmmc`,
+			`xmztz`,
+			`zcdz`,
+			`zyjsnr1`,
+			`zyjsnr2`,
+			`zyjsnr3`,
+			`rzfs_zl`,
+			`rzfs_xz`,
+			`xy_yjncz`,
+			`xy_nxssr`,
+			`xy_nlr`,
+			`xy_nss`,
+			`sh`
+		)
+		values
+		(
+			#{title},
+			#{frdb},
+			#{frlxfs},
+			#{xmlxr},
+			#{xmlxrlxfs},
+			#{dzyx},
+			#{wz},
+			#{xmmc},
+			#{xmztz},
+			#{zcdz},
+			#{zyjsnr1},
+			#{zyjsnr2},
+			#{zyjsnr3},
+			#{rzfsZl},
+			#{rzfsXz},
+			#{xyYjncz},
+			#{xyNxssr},
+			#{xyNlr},
+			#{xyNss},
+			#{sh}
+		)
+	</insert>
+
+	<select id="getMokuai" resultType="com.bootdo.common.domain.MokuaiDO">
+		SELECT sm.id,sm.name,sm.value FROM sys_mokuai sm order by sm.id ASC
+	</select>
+	<select id="getFenlei" resultType="com.bootdo.common.domain.FenleiDO" parameterType="java.lang.Integer">
+		SELECT sf.id,sf.name FROM sys_fenlei sf
+		<where>
+			sf.parent_id = #{parent_id}
+		</where>
+		order by sf.id ASC
+	</select>
+	<select id="getlianjie" resultType="com.bootdo.common.domain.LianjieDO" parameterType="java.lang.String">
+		SELECT sl.* FROM sys_lianjie sl
+		<where>
+			sl.leixing = #{leixing}
+		</where>
+		order by sl.id ASC
+	</select>
+	<insert id="zxzxSave" parameterType="com.bootdo.zixunfuwu.domain.ZaixianzixunDO" useGeneratedKeys="true" keyProperty="id">
+		insert into zixun_zaixianzixun
+		(
+			`title`,
+			`xingming`,
+			`danweiname`,
+			`dianhua`,
+			`youxiang`,
+			`lianxidizhi`,
+			`zixunzhuti`,
+			`huifu`,
+			`shenhe`,
+			`zixun_time`,
+			`huifu_time`,
+			`huifu_bumen`
+		)
+		values
+		(
+			#{title},
+			#{xingming},
+			#{danweiname},
+			#{dianhua},
+			#{youxiang},
+			#{lianxidizhi},
+			#{zixunzhuti},
+			#{huifu},
+			#{shenhe},
+			#{zixunTime},
+			#{huifuTime},
+			#{huifuBumen}
+		)
+	</insert>
+	<select id="getZxzx" resultType="com.bootdo.zixunfuwu.domain.ZaixianzixunDO">
+		select `id`,`title`,`xingming`,`danweiname`,`dianhua`,`youxiang`,`lianxidizhi`,`zixunzhuti`,`huifu`,`shenhe`,`zixun_time`,`huifu_time`,`huifu_bumen` from zixun_zaixianzixun
+		<where>
+			shenhe = 1
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="title != null and title != ''"> and title = #{title} </if>
+			<if test="xingming != null and xingming != ''"> and xingming = #{xingming} </if>
+			<if test="danweiname != null and danweiname != ''"> and danweiname = #{danweiname} </if>
+			<if test="dianhua != null and dianhua != ''"> and dianhua = #{dianhua} </if>
+			<if test="youxiang != null and youxiang != ''"> and youxiang = #{youxiang} </if>
+			<if test="lianxidizhi != null and lianxidizhi != ''"> and lianxidizhi = #{lianxidizhi} </if>
+			<if test="zixunzhuti != null and zixunzhuti != ''"> and zixunzhuti = #{zixunzhuti} </if>
+			<if test="huifu != null and huifu != ''"> and huifu = #{huifu} </if>
+			<!--<if test="shenhe != null and shenhe != ''"> and shenhe = #{shenhe} </if>-->
+			<if test="zixunTime != null and zixunTime != ''"> and zixun_time = #{zixunTime} </if>
+			<if test="huifuTime != null and huifuTime != ''"> and huifu_time = #{huifuTime} </if>
+			<if test="huifuBumen != null and huifuBumen != ''"> and huifu_bumen = #{huifuBumen} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+	</select>
+	<select id="ZxzxCount" resultType="int">
+		select count(*) from zixun_zaixianzixun
+		<where>
+			shenhe = 1
+			<if test="id != null and id != ''"> and id = #{id} </if>
+			<if test="title != null and title != ''"> and title = #{title} </if>
+			<if test="xingming != null and xingming != ''"> and xingming = #{xingming} </if>
+			<if test="danweiname != null and danweiname != ''"> and danweiname = #{danweiname} </if>
+			<if test="dianhua != null and dianhua != ''"> and dianhua = #{dianhua} </if>
+			<if test="youxiang != null and youxiang != ''"> and youxiang = #{youxiang} </if>
+			<if test="lianxidizhi != null and lianxidizhi != ''"> and lianxidizhi = #{lianxidizhi} </if>
+			<if test="zixunzhuti != null and zixunzhuti != ''"> and zixunzhuti = #{zixunzhuti} </if>
+			<if test="huifu != null and huifu != ''"> and huifu = #{huifu} </if>
+			<!--<if test="shenhe != null and shenhe != ''"> and shenhe = #{shenhe} </if>-->
+			<if test="zixunTime != null and zixunTime != ''"> and zixun_time = #{zixunTime} </if>
+			<if test="huifuTime != null and huifuTime != ''"> and huifu_time = #{huifuTime} </if>
+			<if test="huifuBumen != null and huifuBumen != ''"> and huifu_bumen = #{huifuBumen} </if>
+		</where>
+	</select>
+	<select id="getZxzxById" resultType="com.bootdo.zixunfuwu.domain.ZaixianzixunDO">
+		SELECT * from zixun_zaixianzixun
+		<where>
+			<if test="id != null and id != ''"> and id = #{id} </if>
+		</where>
+	</select>
+
+</mapper>

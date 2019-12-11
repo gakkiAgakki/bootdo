@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>欢迎页</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/blog/mytab.css">
+</head>
+
+<style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        min-width: 1170px;
+        padding-left: 0;
+    }
+    .tongyong{
+        height: 36%;
+        margin-top: 1%;
+    }
+    .myPadding{
+        padding: 0;
+    }
+    .son{
+        height: 15%;
+        text-align: center;
+    }
+    .son::before{
+        display: inline-block;
+        content: "";
+        height: 100%;
+        vertical-align: middle;
+    }
+    .aCls{
+        display: block;
+        height: 100%;
+    }
+</style>
+
+<body style="height: 100%;width: 100%;">
+<div class="panel panel-default" style="width: 100%;height: 100%;margin-bottom: 0">
+    <!--<div class="panel-heading">太原不锈钢产业园区政府管理系统</div>-->
+    <!--<div style="width: 100%;height: 100%;">-->
+        <!--<img src="/img/hyjm.jpg" style="width: 100%;height: 100%;">-->
+
+    <!--</div>-->
+    <div class="row" style="margin: 0;height: 100%;">
+        <!--<div class="col-xs-12" style="border-bottom: 1px solid #015b97">-->
+            <!--<span id="mkfl" style="font-size: 15px;"></span>-->
+        <!--</div>-->
+        <div class="col-xs-12">
+
+            <div class="col-xs-12" style="text-align: center;margin-top: 15px;">
+                <div style="width: auto;color: #015b97">
+                    <span>太原不锈钢产业园区</span>
+                </div>
+                <!--<div style="margin-top: 10px;">-->
+                    <!--<ul id="xFenlei" class="postFenlei">-->
+                        <!--&lt;!&ndash;18px;&ndash;&gt;-->
+                    <!--</ul>-->
+                <!--</div>-->
+            </div>
+            <!--<div class="col-xs-3" style="width:1px;height:70%;margin:0 auto;padding:0;background-color:#015b97 "></div>-->
+            <div class="col-xs-10 col-sm-offset-1" style="border: 1px solid #dddddd;margin-top: 4.6%;">
+                <div style="text-align: center;margin-top: 2%;">
+                    <!--<div class="adRTableDiv">-->
+                        <!--<ul style="line-height: 40px;padding: 0;background-color: #337ab7;color: white;list-style: none;font-size: 18px;">-->
+                            <!---->
+                        <!--</ul>-->
+                        <ul class="adRtext" id="xycx">
+                            <li style="line-height: 40px;padding: 0;background-color: #337ab7;color: white;list-style: none;font-size: 18px;">
+                                <span style="float: left;width: 40%;">公司名称</span>
+                                <span style="float: left;width: 30%;">统一社会信用代码</span>
+                                <span >工商注册号</span>
+                            </li>
+                        </ul>
+                    <!--</div>-->
+                </div>
+                <div id="myPage" align="center" style="margin-top:2%;font-size: 15px;">
+                    <!--总共<a th:text="${page.pages}"/>页|-->
+                    <!--第<a th:text="${page.getPageNum()}"/>页|-->
+                    <!--<a th:href="@{/xContent/open/zixunhuifu?(page=${page.firstPage})}" class="f">首页</a>|-->
+                    <!--<a th:href="@{/xContent/open/zixunhuifu?(page=${page.prePage})}" class="f">上一页</a>|-->
+                    <!--<a th:href="@{/xContent/open/zixunhuifu?(page=${page.nextPage})}" class="la">下一页</a>|-->
+                    <!--<a th:href="@{/xContent/open/zixunhuifu?(page=${page.lastPage})}" class="la">尾页</a>-->
+                    <!--<input type="hidden" id="first" th:value="${page.getPageNum()}"/>-->
+                    <!--<input type="hidden" id="last" th:value="${page.pages}"/>-->
+                    总共<a th:text="${page.pages}"/>页|
+                    第<a th:text="${page.getPageNum()}"/>页|
+                    <input type="hidden" id="first" th:value="${page.getPageNum()}"/>
+                    <input type="hidden" id="last" th:value="${page.pages}"/>
+                    <a href="javascript:void(0)" th:onclick="'javascript:pageFun(\''+${page.firstPage} + '\');'">首页</a>|
+                    <a href="javascript:void(0)" th:onclick="'javascript:pageFun(\''+${page.prePage} +'\');'">上一页</a>|
+                    <a href="javascript:void(0)" th:onclick="'javascript:pageFun(\''+${page.nextPage} +'\');'">下一页</a>|
+                    <a href="javascript:void(0)" th:onclick="'javascript:pageFun(\''+${page.lastPage} +'\');'">尾页</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/plugins/layer/layer.js"></script>
+<script src="/js/ajax-util.js"></script>
+<!--<script src="/js/appjs/blog/clean-blog.min.js"></script>-->
+<!--<script src="/js/plugins/summernote/summernote.min.js"></script>-->
+<!--<script src="/js/plugins/summernote/summernote-zh-CN.js"></script>-->
+<script type="text/javascript" src="/js/appjs/blog/jquery.bxslider.js"></script>
+<!--<script type="text/javascript" src="/ueditor/ueditor.parse.js"></script>-->
+<script type="text/javascript" th:inline="javascript">
+    $().ready(function () {
+
+        var xyList = [[${xycxList}]];
+        var htmlCon = "";
+        for (i = 0; i < xyList.length; i++) {
+            var ztmc = xyList[i].ztmc;
+            var tyshxydm = xyList[i].tyshxydm;
+            var gsdjzh = xyList[i].gsdjzh;
+//            if (huifuTime != "" && huifuTime != null){
+//                huifuTime = huifuTime.split("T")[0];
+//            }
+            if (ztmc.length > 25){
+                ztmc = ztmc.substring(0,25) + "...";
+            }
+            if ( i % 2 == 0){
+                htmlCon += '<li style="line-height: 40px;padding: 0;background-color: #eeeeee;list-style: none;font-size: 16px;height: 40px;">';
+                htmlCon += '<a href="/xypjtx/open/zxzxByid/'+xyList[i].xId+'" title="'+xyList[i].ztmc+'" style="float: left;width: 55%;">';
+                htmlCon += ztmc.substring(0,30);
+                htmlCon += '</a>';
+                htmlCon += '<span style="width: 20%;float: left;">' + tyshxydm;
+                htmlCon += '</span>';
+                htmlCon += '<span style="width: 20%;float: left;">' + gsdjzh;
+                htmlCon += '</span>';
+                htmlCon += '</li>';
+            }else {
+                htmlCon += '<li style="line-height: 40px;padding: 0;list-style: none;font-size: 16px;height: 40px;">';
+                htmlCon += '<a href="/xypjtx/open/zxzxByid/'+xyList[i].id+'" title="'+xyList[i].ztmc+'" style="float: left;width: 55%;">';
+                htmlCon += ztmc.substring(0,30);
+                htmlCon += '</a>';
+                htmlCon += '<span style="width: 20%;float: left;">' + tyshxydm;
+                htmlCon += '</span>';
+                htmlCon += '<span style="width: 20%;float: left;">' + gsdjzh;
+                htmlCon += '</span>';
+                htmlCon += '</li>';
+            }
+
+        }
+        $("#xycx").append(htmlCon);
+
+//        var htmlText = "";
+//        htmlText += '<li style="background-image: url(' + "/img/2.png" + ')">';
+//        htmlText += '<a href="/xContent/open/toZaixianzixun" title="在线咨询">';
+//        htmlText += "在线咨询";
+//        htmlText += '</a>';
+//        htmlText += '</li>';
+//
+//        htmlText += '<li style="background-image: url(' + "/img/1.png" + ')">';
+//        htmlText += '<a href="/xContent/open/zixunhuifu" title="咨询回复">';
+//        htmlText += "咨询回复";
+//        htmlText += '</a>';
+//        htmlText += '</li>';
+//
+//        $("#xFenlei").append(htmlText);
+//
+//        var htmlmkfl = "";
+//        htmlmkfl += "<a href='/xContent'>首页</a>";
+//        htmlmkfl += ">><a href='/xContent/open/toZaixianzixun'>政民互动</a>";
+//        htmlmkfl += ">><a href='/xContent/open/zixunhuifu'>咨询回复</a>";
+//        $("#mkfl").append(htmlmkfl);
+//
+    });
+    function pageFun(pages) {
+        var pageNum = $("#first").val();
+        var lastPage = $("#last").val();
+        pages = Number(pages);
+        pageNum = Number(pageNum);
+        lastPage = Number(lastPage);
+//	alert(pages+"==="+pageNum+"===="+lastPage);
+        if (pages < 1 || pages == 0 || pages > lastPage || pages == pageNum){
+            return;
+        }
+        window.location.href="/xypjtx/open/xycxList?page="+pages;
+    }
+</script>
+</html>
